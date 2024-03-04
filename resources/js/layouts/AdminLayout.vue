@@ -1,14 +1,14 @@
-<script setup lang="ts">
-import SidebarArea from '@components/Sidebar/SidebarArea.vue'
-import AdminHeader from '@components/AdminHeader.vue'
+<script setup>
+import SidebarArea from '@components/sidebar/SidebarArea.vue'
+import AdminHeader from '@components/header/AdminHeader.vue'
 </script>
 
 <template>
     <!-- ===== Page Wrapper Start ===== -->
     <div class="flex h-screen overflow-hidden">
-        <!-- ===== Sidebar Start ===== -->
+        <!-- ===== sidebar Start ===== -->
         <SidebarArea />
-        <!-- ===== Sidebar End ===== -->
+        <!-- ===== sidebar End ===== -->
 
         <!-- ===== Content Area Start ===== -->
         <div class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">

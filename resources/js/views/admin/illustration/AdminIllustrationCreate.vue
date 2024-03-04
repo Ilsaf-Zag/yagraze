@@ -2,9 +2,9 @@
 
 import {ref, reactive} from "vue";
 import axios from "axios";
-import Loading from "@components/Loading.vue";
+import Loading from "@components/loading/Loading.vue";
 
-const isLoading = ref(false)
+const loadingStore =  useLoadingStore()
 const image = ref({})
 const errors = ref({})
 
@@ -18,7 +18,7 @@ function onFileChange(event) {
 }
 
 function store() {
-    isLoading.value = true
+    loadingStore.toggleLoad()
 
     const formData = new FormData()
 
@@ -31,6 +31,8 @@ function store() {
             form.image = null
 
             image.value.value = null
+
+            if (errors) errors.value = ''
         })
         .catch(error => {
             if (error.response.status === 422) {
@@ -38,7 +40,7 @@ function store() {
             }
         })
         .finally(() => {
-            isLoading.value = false
+            loadingStore.toggleLoad()
         })
 }
 
@@ -47,7 +49,7 @@ function store() {
 <template>
     <div class="flex flex-col">
         <div class="overflow-x-auto">
-            <Loading v-model="isLoading"/>
+            <Loading v-model="loadingStore.isLoading"/>
             <div class="align-middle inline-block min-w-full ">
                 <div class=" shadow overflow-hidden sm:rounded-lg">
                     <div class="p-4 bg-black2 text-white">
@@ -57,7 +59,7 @@ function store() {
                                 <label for="illustrationName" class="block mb-1">Название</label>
                                 <input id="illustrationName" type="text" v-model="form.name"
                                        class="border border-gray-700 rounded-md p-2 w-full bg-gray-800 text-white"
-                                       :class="{'border-1 border-red-600':errors?.name}"
+                                       :class="{'border-2 border-red-600':errors?.name}"
                                 >
                                 <div v-if="errors.name" class="mt-2 text-red-600">{{ errors.name[0] }}</div>
                             </div>
@@ -67,7 +69,7 @@ function store() {
                                        @change="onFileChange"
                                        ref="image"
                                        class="border border-gray-700 rounded-md p-2 w-full bg-gray-800 text-white"
-                                       :class="{'border-1 border-red-600':errors.image}"
+                                       :class="{'border-2 border-red-600':errors.image}"
                                 >
                                 <div v-if="errors.image" class="mt-2 text-red-600">{{ errors.image[0] }}</div>
                             </div>

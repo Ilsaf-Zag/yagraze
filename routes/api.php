@@ -1,6 +1,9 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\API\Admin\DesignController;
+use App\Http\Controllers\API\Admin\IllustrationController;
+use App\Http\Controllers\API\Admin\ReviewController;
+use App\Http\Controllers\API\Admin\SettingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,32 +17,33 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/authorInfo',[\App\Http\Controllers\AuthorInfoController::class,'index']);
-Route::get('/illustrations',[\App\Http\Controllers\IllustrationController::class,'index']);
-Route::get('/designs',[\App\Http\Controllers\DesignController::class,'index']);
+Route::get('/illustrations', [\App\Http\Controllers\API\User\IllustrationController::class, 'index']);
+Route::get('/designs', [\App\Http\Controllers\API\User\DesignController::class, 'index']);
+Route::post('/send-mail', \App\Http\Controllers\API\User\SendMailController::class);
 
-Route::patch('/admin/illustrations/sort',[\App\Http\Controllers\API\Admin\IllustrationController::class,'sorted']);
-
-Route::get('/admin/illustrations',[\App\Http\Controllers\API\Admin\IllustrationController::class,'index']);
-Route::get('/admin/illustrations/{illustration}',[\App\Http\Controllers\API\Admin\IllustrationController::class,'edit']);
-Route::patch('/admin/illustrations/{illustration}',[\App\Http\Controllers\API\Admin\IllustrationController::class,'update']);
-Route::post('/admin/illustrations',[\App\Http\Controllers\API\Admin\IllustrationController::class,'store']);
-Route::delete('/admin/illustrations/{illustration}',[\App\Http\Controllers\API\Admin\IllustrationController::class,'destroy']);
+Route::get('/reviews/all', [\App\Http\Controllers\API\User\ReviewController::class, 'all']);
+Route::get('/reviews/randomValues', [\App\Http\Controllers\API\User\ReviewController::class, 'randomValues']);
 
 
-Route::patch('/admin/designs/sort',[\App\Http\Controllers\API\Admin\DesignController::class,'sorted']);
+Route::prefix('admin')->group(function () {
 
-Route::get('/admin/designs',[\App\Http\Controllers\API\Admin\DesignController::class,'index']);
-Route::get('/admin/designs/{design}',[\App\Http\Controllers\API\Admin\DesignController::class,'edit']);
-Route::patch('/admin/designs/{design}',[\App\Http\Controllers\API\Admin\DesignController::class,'update']);
-Route::post('/admin/designs',[\App\Http\Controllers\API\Admin\DesignController::class,'store']);
-Route::delete('/admin/designs/{design}',[\App\Http\Controllers\API\Admin\DesignController::class,'destroy']);
+    Route::patch('/illustrations/sort', [IllustrationController::class,'sorted']);
+    Route::patch('/designs/sort', [DesignController::class,'sorted']);
 
-Route::get('/admin/settings/all',[\App\Http\Controllers\API\Admin\SettingController::class,'getSettingsAll']);
-Route::get('/admin/settings/get',[\App\Http\Controllers\API\Admin\SettingController::class,'getSettings']);
-Route::patch('/admin/settings/',[\App\Http\Controllers\API\Admin\SettingController::class,'update']);
-Route::post('/admin/settings',[\App\Http\Controllers\API\Admin\SettingController::class,'store']);
-Route::delete('/admin/settings/{setting}',[\App\Http\Controllers\API\Admin\SettingController::class,'destroy']);
+    Route::resource('illustrations' , IllustrationController::class)->except(['create','show']);
+    Route::resource('designs' , DesignController::class)->except(['create','show']);
+    Route::resource('reviews' , ReviewController::class)->except(['create','show']);
+
+    Route::controller(SettingController::class)->group(function (){
+        Route::get('/settings/all', 'getSettingsAll');
+        Route::get('/settings', 'getSettings');
+        Route::post('/settings','setSettings');
+    });
+});
+
+
+
+
 
 
 //Route::middleware('auth:sanctum)->get('/user', function (Request $request) {

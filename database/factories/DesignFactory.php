@@ -21,6 +21,7 @@ class DesignFactory extends Factory
 
         return [
             'name' => $this->faker->word,
+            'description'=>$this->faker->word,
             'preview_url' => $this->faker->image('public/images/design/preview', 400, 400, null, false),
             'url' => $this->faker->image('public/images/design', random_int(800, 1000), random_int(600, 2000), null, false),
         ];

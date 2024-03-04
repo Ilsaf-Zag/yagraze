@@ -19,7 +19,7 @@ class Setting extends Model
 
     public function getMetaAttribute($value)
     {
-        return json_decode($this->attributes['data']);
+        return $this->attributes['data'];
     }
 
     public function setMetaAttribute($value)

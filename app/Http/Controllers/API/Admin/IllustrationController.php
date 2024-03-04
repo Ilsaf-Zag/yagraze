@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\API\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Illustration\StoreIllustrationRequest;
+use App\Http\Requests\Illustration\UpdateIllustrationRequest;
 use App\Models\Illustration;
-use App\Http\Requests\StoreIllustrationRequest;
-use App\Http\Requests\UpdateIllustrationRequest;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 
 class IllustrationController extends Controller
@@ -27,15 +26,6 @@ class IllustrationController extends Controller
         return $illustrations;
     }
 
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
     /**
      * Store a newly created resource in storage.
      */
@@ -52,13 +42,6 @@ class IllustrationController extends Controller
         ]);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Illustration $illustration)
-    {
-        return $illustration;
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -102,7 +85,7 @@ class IllustrationController extends Controller
             'ids' => 'required|array',
             'ids.*' => 'int'
         ]);
-        Illustration::setNewOrder(...$validated);
+        Illustration::setNewOrder($validated['ids']);
 
     }
 }

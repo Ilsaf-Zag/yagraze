@@ -4,54 +4,64 @@ import {createRouter, createWebHistory} from 'vue-router'
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
+
         {
-            path: '/',
-            name: 'home',
-            component: () => import('@pages/HomeView.vue'),
-            meta: {
-                title: "Главная страница"
-            }
+            path: '',
+            component: () => import('@views/user/DefaultView.vue'),
+
+            children: [
+                {
+                    path: '',
+                    component: () => import('@views/user/home/HomeView.vue'),
+                    name: 'home',
+                    meta: {
+                        title: "Главная страница"
+                    }
+                },
+                {
+                    path: '/designs',
+                    name: 'designs',
+                    component: () => import('@views/user/design/DesignView.vue'),
+                    meta: {
+                        title: "Дизайны"
+                    }
+                },
+                {
+                    path: '/illustrations',
+                    name: 'illustrations',
+                    component: () => import('@views/user/illustration/IllustrationsView.vue'),
+                    meta: {
+                        title: "Иллюстрации"
+                    }
+                },
+                {
+                    path: '/services',
+                    name: 'services',
+                    component: () => import('@views/user/service/ServicesView.vue'),
+                    meta: {
+                        title: "Услуги"
+                    }
+                },
+                {
+                    path: '/reviews',
+                    name: 'reviews',
+                    component: () => import('@views/user/review/ReviewsView.vue'),
+                    meta: {
+                        title: "Отзывы"
+                    }
+                },
+                {
+                    path: '/contacts',
+                    name: 'contacts',
+                    component: () => import('@views/user/contact/ContactsView.vue'),
+                    meta: {
+                        title: "Контакты"
+                    }
+                }
+
+            ]
         },
-        {
-            path: '/designs',
-            name: 'designs',
-            component: () => import('@pages/DesignView.vue'),
-            meta: {
-                title: "Дизайны"
-            }
-        },
-        {
-            path: '/illustrations',
-            name: 'illustrations',
-            component: () => import('@pages/IllustrationsView.vue'),
-            meta: {
-                title: "Иллюстрации"
-            }
-        },
-        {
-            path: '/services',
-            name: 'services',
-            component: () => import('@pages/ServicesView.vue'),
-            meta: {
-                title: "Услуги"
-            }
-        },
-        {
-            path: '/reviews',
-            name: 'reviews',
-            component: () => import('@pages/ReviewsView.vue'),
-            meta: {
-                title: "Отзывы"
-            }
-        },
-        {
-            path: '/contacts',
-            name: 'contacts',
-            component: () => import('@pages/ContactsView.vue'),
-            meta: {
-                title: "Контакты"
-            }
-        },
+
         {
             path: '/admin',
             component: () => import('@/js/views/admin/AdminView.vue'),
@@ -143,9 +153,40 @@ const router = createRouter({
                     ]
                 },
                 {
-                    path:'settings',
-                    name:'admin.settings',
-                    component: () => import('../views/admin/settings/AdminSettingsList.vue'),
+                    path: 'reviews',
+                    children: [
+                        {
+                            path: '',
+                            name: 'admin.reviews',
+                            component: () => import('../views/admin/review/AdminReviewList.vue'),
+                            meta: {
+                                title: "Админ-панель | Отзывы"
+                            },
+                        },
+                        {
+                            path: 'create',
+                            name: 'admin.reviews.create',
+                            component: () => import('../views/admin/review/AdminReviewCreate.vue'),
+
+                            meta: {
+                                title: "Админ-панель | Создание отзыва"
+                            },
+                        },
+                        {
+                            path: ':id/edit',
+                            name: 'admin.reviews.edit',
+                            component: () => import('../views/admin/review/AdminReviewEdit.vue'),
+                            props: true,
+                            meta: {
+                                title: "Админ-панель | Редактирование отзыва"
+                            },
+                        },
+                    ]
+                },
+                {
+                    path: 'settings',
+                    name: 'admin.settings',
+                    component: () => import('../views/admin/settings/AdminSettings.vue'),
                     meta: {
                         title: "Админ панель | Настройки"
                     }
@@ -156,10 +197,10 @@ const router = createRouter({
 
         {
             path: "/:pathMatch(.*)*",
-            name: "404",
-            component: () => import('../views/errors/404.vue'),
+            name: "NotFound",
+            component: () => import('../views/errors/NotFound .vue'),
             meta: {
-                title: "404"
+                title: "Страница не найдена"
             },
         },
     ]

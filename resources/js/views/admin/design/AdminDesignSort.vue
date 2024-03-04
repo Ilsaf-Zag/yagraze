@@ -4,6 +4,7 @@ import {nextTick, ref} from "vue";
 import axios from "axios";
 import {useSortable} from '@vueuse/integrations/useSortable'
 import { moveArrayElement } from '@vueuse/integrations/useSortable'
+import {textCropping} from "@mixins/textCroppingMixin.js";
 
 const list = ref({})
 
@@ -51,6 +52,10 @@ axios.get(`/api/admin/designs?pageSize=0`)
                             </th>
                             <th scope="col"
                                 class="px-4 py-3 sm:px-2 text-left text-xs font-medium text-gray uppercase tracking-wider">
+                                Описание
+                            </th>
+                            <th scope="col"
+                                class="px-4 py-3 sm:px-2 text-left text-xs font-medium text-gray uppercase tracking-wider">
                                 Пор.номер
                             </th>
                             <th scope="col"
@@ -73,6 +78,11 @@ axios.get(`/api/admin/designs?pageSize=0`)
                             <td class="px-4 py-4 whitespace-nowrap">
                                 <div class="text-sm font-medium">
                                     {{ design.name }}
+                                </div>
+                            </td>
+                            <td class="px-4 py-4 whitespace-nowrap">
+                                <div class="text-sm font-medium">
+                                    {{ textCropping(design.description) }}
                                 </div>
                             </td>
                             <td class="px-4 py-4 whitespace-nowrap">

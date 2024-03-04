@@ -4,7 +4,6 @@ namespace App\Http\Controllers\API\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
-use Hamcrest\Core\Set;
 use Illuminate\Http\Request;
 
 class SettingController extends Controller
@@ -16,40 +15,36 @@ class SettingController extends Controller
     public function getSettings()
     {
         $setting = Setting::query()->first();
-        if (is_null($setting)) return;
-        $data = $setting->data;
-        $list = [];
 
-        foreach (\request()->all() as $key) {
-            if (array_key_exists($key, $data)) {
-                $list[$key] = $data[$key];
+        if (!is_null($setting)) {
+            $data = $setting->data;
+            $list = [];
+
+            foreach (\request()->all() as $key) {
+                if (array_key_exists($key, $data)) {
+                    $list[$key] = $data[$key];
+                }
             }
+
+            return $list;
         }
-        return $list;
     }
 
     public function getSettingsAll()
     {
-
         $setting = Setting::query()->first();
-        if (is_null($setting)) return;
 
-        $setting->meta;
-        return $setting;
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        if (!is_null($setting)) {
+            $setting->meta;
+            return $setting;
+        };
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+
+    public function setSettings(Request $request)
     {
         $data = $request->all();
 
@@ -59,35 +54,4 @@ class SettingController extends Controller
         $setting->save();
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }

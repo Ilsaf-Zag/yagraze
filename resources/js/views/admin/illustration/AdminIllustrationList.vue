@@ -3,10 +3,11 @@
 import {onMounted, ref} from "vue";
 import axios from "axios";
 import {TailwindPagination} from 'laravel-vue-pagination';
-import Loading from "@components/Loading.vue";
+import Loading from "@components/loading/Loading.vue";
+import {useLoadingStore} from "@stores/loadingStore.js";
 
 const illustrations = ref({})
-const isLoading = ref(false)
+const loadingStore =  useLoadingStore()
 
 onMounted(()=>{
     getIllustrations();
@@ -14,22 +15,29 @@ onMounted(()=>{
 
 
 function getIllustrations(page = 1) {
-    isLoading.value = true
+    loadingStore.toggleLoad()
 
     axios.get(`/api/admin/illustrations?page=${page}`)
         .then(res => {
             illustrations.value = res.data
         })
         .finally(() => {
-            isLoading.value = false
+            loadingStore.toggleLoad()
         })
 }
 function deleteIllustration(id) {
+    loadingStore.toggleLoad()
+
     if (confirm('Вы точно хотите удалить?')){
         axios.delete(`/api/admin/illustrations/${id}`)
             .then(res => {
                 getIllustrations(illustrations.value.current_page)
             })
+            .finally(()=>{
+                loadingStore.toggleLoad()
+            })
+    } else {
+        loadingStore.toggleLoad()
     }
 }
 </script>
@@ -38,7 +46,7 @@ function deleteIllustration(id) {
     <div class="flex flex-col">
         <div class="overflow-x-auto">
             <div class="align-middle inline-block min-w-full">
-                <Loading v-model="isLoading"/>
+                <Loading v-model="loadingStore.isLoading"/>
                 <div v-if="illustrations"
                      class=" shadow overflow-hidden sm:rounded-lg flex flex-col"
                 >

@@ -3,41 +3,52 @@
 import {onMounted, ref} from "vue";
 import axios from "axios";
 import {TailwindPagination} from 'laravel-vue-pagination';
-import Loading from "@components/Loading.vue";
+import Loading from "@components/loading/Loading.vue";
+import {useLoadingStore} from "@stores/loadingStore.js";
+import {textCropping} from "@mixins/textCroppingMixin.js";
 
 const designs = ref({})
-const isLoading = ref(false)
+const loadingStore =  useLoadingStore()
 
 onMounted(()=>{
     getDesigns();
 })
 
 function getDesigns(page = 1) {
-    isLoading.value = true
+    loadingStore.toggleLoad()
 
     axios.get(`/api/admin/designs?page=${page}`)
         .then(res => {
             designs.value = res.data
         })
         .finally(() => {
-            isLoading.value = false
+            loadingStore.toggleLoad()
         })
 }
-function deleteIllustration(id) {
+function deleteDesign(id) {
+    loadingStore.toggleLoad()
+
     if (confirm('Вы точно хотите удалить?')){
         axios.delete(`/api/admin/designs/${id}`)
             .then(res => {
                 getDesigns(designs.value.current_page)
             })
+            .finally(()=>{
+                loadingStore.toggleLoad()
+            })
+    } else {
+        loadingStore.toggleLoad()
     }
 }
+
+
 </script>
 
 <template>
     <div class="flex flex-col">
         <div class="overflow-x-auto">
             <div class="align-middle inline-block min-w-full">
-                <Loading v-model="isLoading"/>
+                <Loading v-model="loadingStore.isLoading"/>
                 <div v-if="designs"
                      class=" shadow overflow-hidden sm:rounded-lg flex flex-col"
                 >
@@ -61,6 +72,10 @@ function deleteIllustration(id) {
                             <th scope="col"
                                 class="px-4 py-3 sm:px-2 text-left text-xs font-medium text-gray uppercase tracking-wider">
                                 Название
+                            </th>
+                            <th scope="col"
+                                class="px-4 py-3 sm:px-2 text-left text-xs font-medium text-gray uppercase tracking-wider">
+                                Описание
                             </th>
                             <th scope="col"
                                 class="px-4 py-3 sm:px-2 text-left text-xs font-medium text-gray uppercase tracking-wider md:hidden">
@@ -92,6 +107,11 @@ function deleteIllustration(id) {
                                     {{ design.name }}
                                 </div>
                             </td>
+                            <td class="px-4 py-4 whitespace-nowrap">
+                                <div class="text-sm font-medium">
+                                    {{ textCropping(design.description) }}
+                                </div>
+                            </td>
                             <td class=" px-4 py-4 sm:px-2 whitespace-nowrap relative md:hidden">
                                 <div class="group text-sm font-medium inline-block">
                                     <img :src="`/images/design/preview/${design.preview_url}`"
@@ -114,7 +134,7 @@ function deleteIllustration(id) {
                             </td>
                             <td class=" px-4 py-4 sm:px-2 whitespace-nowrap relative">
                                 <div class="group text-sm font-medium inline-block">
-                                    <button @click="deleteIllustration(design.id)"
+                                    <button @click="deleteDesign(design.id)"
                                             class="bg-red-900 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
                                         Удалить
                                     </button>

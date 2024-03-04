@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col">
         <div class="overflow-x-auto">
-            <Loading v-model="isLoading"/>
+            <Loading v-model="loadingStore.isLoading"/>
             <div class="align-middle inline-block min-w-full ">
                 <div class=" shadow overflow-hidden sm:rounded-lg">
                     <div class="p-4 bg-black2 text-white">
@@ -11,7 +11,7 @@
                                 <label for="illustrationName" class="block mb-1">Название</label>
                                 <input id="illustrationName" type="text" v-model="form.name"
                                        class="border border-gray-700 rounded-md p-2 w-full bg-gray-800 text-white"
-                                       :class="{'border-1 border-red-600':errors?.name}"
+                                       :class="{'border-2 border-red-600':errors?.name}"
                                 >
                                 <div v-if="errors.name" class="mt-2 text-red-600">{{ errors.name[0] }}</div>
 
@@ -21,7 +21,7 @@
                                 <div
                                     ref="dropzone"
                                     class="border h-full border-gray-700 rounded-md p-2 w-full bg-gray-800 text-white"
-                                    :class="{'border-1 border-red-600':errors.image}"
+                                    :class="{'border-2 border-red-600':errors.image}"
                                 >
                                     Загрузить
                                 </div>
@@ -44,12 +44,12 @@
 <script setup>
 import axios from "axios";
 import {onMounted, reactive, ref} from "vue";
-import Loading from "@components/Loading.vue";
+import Loading from "@components/loading/Loading.vue";
 import Dropzone from "dropzone";
 import {useRouter} from "vue-router";
 
 const router = useRouter()
-const isLoading = ref(false)
+const loadingStore =  useLoadingStore()
 
 const props = defineProps({
     id:Number
@@ -71,11 +71,11 @@ onMounted(()=>{
 })
 
 function getIllustration () {
-    isLoading.value = true
+    loadingStore.toggleLoad()
 
     axios.get(`/api/admin/illustrations/${props.id}`)
         .then(res => {
-            isLoading.value = true
+            loadingStore.toggleLoad()
 
             illustration.value = res.data
             form.name = res.data.name
@@ -88,11 +88,11 @@ function getIllustration () {
             }
         })
         .finally(() => {
-            isLoading.value = false
+            loadingStore.toggleLoad()
         })
 }
 function update() {
-    isLoading.value = true
+    loadingStore.toggleLoad()
 
     const formData = new FormData()
     const file = dropzone.value.dropzone?.getAcceptedFiles()[0] || ''
@@ -111,7 +111,7 @@ function update() {
             }
         })
         .finally(()=>{
-            isLoading.value = false
+            loadingStore.toggleLoad()
         })
 }
 function dropzoneInit() {

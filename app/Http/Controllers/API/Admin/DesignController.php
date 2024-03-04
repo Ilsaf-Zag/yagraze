@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\API\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreDesignRequest;
-use App\Http\Requests\UpdateDesignRequest;
+use App\Http\Requests\Design\StoreDesignRequest;
+use App\Http\Requests\Design\UpdateDesignRequest;
 use App\Models\Design;
 use Illuminate\Support\Facades\Storage;
-use Spatie\LaravelIgnition\Solutions\SolutionProviders\DefaultDbNameSolutionProvider;
 
 class DesignController extends Controller
 {
@@ -27,14 +26,6 @@ class DesignController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(StoreDesignRequest $request)
@@ -50,17 +41,10 @@ class DesignController extends Controller
 
         Design::create([
             'name' => $request['name'],
+            'description'=>$request['description'],
             'preview_url' => $previewImageName,
             'url' => $imageName
         ]);
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Design $design)
-    {
-        return $design;
     }
 
     /**
@@ -115,7 +99,7 @@ class DesignController extends Controller
             'ids' => 'required|array',
             'ids.*' => 'int'
         ]);
-        Design::setNewOrder(...$validated);
+        Design::setNewOrder($validated['ids']);
 
     }
 }

@@ -2,16 +2,18 @@
 
 import {ref, reactive, onMounted} from "vue";
 import axios from "axios";
-import Loading from "@components/Loading.vue";
+import Loading from "@components/loading/Loading.vue";
 import Dropzone from "dropzone";
+import {useLoadingStore} from "@stores/loadingStore.js";
 
-const isLoading = ref(false)
+const loadingStore =  useLoadingStore()
 const previewImage = ref({})
 const dropzone = ref()
 const errors = ref({})
 
 const form = reactive({
     name: '',
+    description: '',
     previewImage: '',
     image:''
 
@@ -26,23 +28,24 @@ function onFileChange(event) {
 }
 
 function store() {
-    isLoading.value = true
+    loadingStore.toggleLoad()
 
     const file = dropzone.value.dropzone?.getAcceptedFiles()[0] || ''
 
     const formData = new FormData()
     formData.append('name', form.name)
+    formData.append('description', form.description)
     formData.append('previewImage', form.image)
     formData.append('image', file)
 
     axios.post('/api/admin/designs', formData)
         .then(() => {
-            form.name = ''
-            form.previewImage = ''
-            form.image = ''
+            Object.keys(form).forEach(item => form[item] = "")
 
             previewImage.value.value = null
             dropzone.value.dropzone.removeAllFiles()
+
+            if (errors) errors.value = ''
         })
         .catch(error => {
             if (error.response.status === 422) {
@@ -50,7 +53,7 @@ function store() {
             }
         })
         .finally(() => {
-            isLoading.value = false
+            loadingStore.toggleLoad()
         })
 }
 
@@ -76,7 +79,7 @@ function dropzoneInit(){
 <template>
     <div class="flex flex-col">
         <div class="overflow-x-auto">
-            <Loading v-model="isLoading"/>
+            <Loading v-model="loadingStore.isLoading"/>
             <div class="align-middle inline-block min-w-full ">
                 <div class=" shadow overflow-hidden sm:rounded-lg">
                     <div class="p-4 bg-black2 text-white">
@@ -86,9 +89,17 @@ function dropzoneInit(){
                                 <label for="designName" class="block mb-1">Название</label>
                                 <input id="designName" type="text" v-model="form.name"
                                        class="border border-gray-700 rounded-md p-2 w-full bg-gray-800 text-white"
-                                       :class="{'border-1 border-red-600':errors?.name}"
+                                       :class="{'border-2 border-red-600':errors?.name}"
                                 >
                                 <div v-if="errors.name" class="mt-2 text-red-600">{{ errors.name[0] }}</div>
+                            </div>
+                            <div>
+                                <label for="designDescription" class="block mb-1">Описание</label>
+                                <input id="designDescription" type="text" v-model="form.description"
+                                       class="border border-gray-700 rounded-md p-2 w-full bg-gray-800 text-white"
+                                       :class="{'border-2 border-red-600':errors?.description}"
+                                >
+                                <div v-if="errors.description" class="mt-2 text-red-600">{{ errors.description[0] }}</div>
                             </div>
                             <div>
                                 <div class="block mb-1">Превью:</div>
@@ -96,15 +107,15 @@ function dropzoneInit(){
                                        @change="onFileChange"
                                        ref="previewImage"
                                        class="border border-gray-700 rounded-md p-2 w-full bg-gray-800 text-white"
-                                       :class="{'border-1 border-red-600':errors.image}"
+                                       :class="{'border-2 border-red-600':errors.previewImage}"
                                 >
-                                <div v-if="errors.image" class="mt-2 text-red-600">{{ errors.image[0] }}</div>
+                                <div v-if="errors.previewImage" class="mt-2 text-red-600">{{ errors.previewImage[0] }}</div>
                             </div>
                             <div>Полное изображение</div>
                             <div
                                 ref="dropzone"
                                 class="border h-full border-gray-700 rounded-md p-2 w-full bg-gray-800 text-white"
-                                :class="{'border-1 border-red-600':errors.image}"
+                                :class="{'border-2 border-red-600':errors.image}"
                             >
                                 Загрузить
                             </div>

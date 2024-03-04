@@ -19,6 +19,7 @@ class Design extends Model implements Sortable
 
     protected $fillable = [
         'name',
+        'description',
         'url',
         'preview_url',
         'order'
