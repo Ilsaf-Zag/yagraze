@@ -1,10 +1,10 @@
 import {createRouter, createWebHistory} from 'vue-router'
+import {useAuthStore} from "@stores/authStore.js";
 
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
-
         {
             path: '',
             component: () => import('@views/user/DefaultView.vue'),
@@ -64,13 +64,16 @@ const router = createRouter({
 
         {
             path: '/admin',
-            component: () => import('@/js/views/admin/AdminView.vue'),
+            component: () => import('@views/admin/AdminView.vue'),
+            meta:{
+                requiresAuth: true
+            },
 
             children: [
                 {
                     path: '',
                     name: 'admin.home',
-                    component: () => import('../views/admin/home/AdminHome.vue'),
+                    component: () => import('@views/admin/home/AdminHome.vue'),
                     meta: {
                         title: "Админ-панель | Главная"
                     },
@@ -81,7 +84,7 @@ const router = createRouter({
                         {
                             path: '',
                             name: 'admin.illustrations',
-                            component: () => import('../views/admin/illustration/AdminIllustrationList.vue'),
+                            component: () => import('@views/admin/illustration/AdminIllustrationList.vue'),
                             meta: {
                                 title: "Админ-панель | Карточки иллюстраций"
                             },
@@ -89,7 +92,7 @@ const router = createRouter({
                         {
                             path: 'create',
                             name: 'admin.illustrations.create',
-                            component: () => import('../views/admin/illustration/AdminIllustrationCreate.vue'),
+                            component: () => import('@views/admin/illustration/AdminIllustrationCreate.vue'),
                             meta: {
                                 title: "Админ-панель | Создание карточки иллюстрации"
                             },
@@ -97,7 +100,7 @@ const router = createRouter({
                         {
                             path: ':id/edit',
                             name: 'admin.illustrations.edit',
-                            component: () => import('../views/admin/illustration/AdminIllustrationEdit.vue'),
+                            component: () => import('@views/admin/illustration/AdminIllustrationEdit.vue'),
                             props: true,
                             meta: {
                                 title: "Админ-панель | Редактирование карточки иллюстрации"
@@ -106,7 +109,7 @@ const router = createRouter({
                         {
                             path: 'sort',
                             name: 'admin.illustrations.sort',
-                            component: () => import('../views/admin/illustration/AdminIllustrationSort.vue'),
+                            component: () => import('@views/admin/illustration/AdminIllustrationSort.vue'),
                             meta: {
                                 title: "Админ-панель | Сортировка карточек иллюстраций"
                             },
@@ -119,7 +122,7 @@ const router = createRouter({
                         {
                             path: '',
                             name: 'admin.designs',
-                            component: () => import('../views/admin/design/AdminDesignList.vue'),
+                            component: () => import('@views/admin/design/AdminDesignList.vue'),
                             meta: {
                                 title: "Админ-панель | Карточки дизайнов"
                             },
@@ -127,7 +130,7 @@ const router = createRouter({
                         {
                             path: 'create',
                             name: 'admin.designs.create',
-                            component: () => import('../views/admin/design/AdminDesignCreate.vue'),
+                            component: () => import('@views/admin/design/AdminDesignCreate.vue'),
 
                             meta: {
                                 title: "Админ-панель | Создание карточки дизайна"
@@ -136,7 +139,7 @@ const router = createRouter({
                         {
                             path: ':id/edit',
                             name: 'admin.designs.edit',
-                            component: () => import('../views/admin/design/AdminDesignEdit.vue'),
+                            component: () => import('@views/admin/design/AdminDesignEdit.vue'),
                             props: true,
                             meta: {
                                 title: "Админ-панель | Редактирование карточки дизайна"
@@ -145,7 +148,7 @@ const router = createRouter({
                         {
                             path: 'sort',
                             name: 'admin.designs.sort',
-                            component: () => import('../views/admin/design/AdminDesignSort.vue'),
+                            component: () => import('@views/admin/design/AdminDesignSort.vue'),
                             meta: {
                                 title: "Админ-панель | Сортировка карточек дизайна"
                             },
@@ -158,7 +161,7 @@ const router = createRouter({
                         {
                             path: '',
                             name: 'admin.reviews',
-                            component: () => import('../views/admin/review/AdminReviewList.vue'),
+                            component: () => import('@views/admin/review/AdminReviewList.vue'),
                             meta: {
                                 title: "Админ-панель | Отзывы"
                             },
@@ -166,7 +169,7 @@ const router = createRouter({
                         {
                             path: 'create',
                             name: 'admin.reviews.create',
-                            component: () => import('../views/admin/review/AdminReviewCreate.vue'),
+                            component: () => import('@views/admin/review/AdminReviewCreate.vue'),
 
                             meta: {
                                 title: "Админ-панель | Создание отзыва"
@@ -175,7 +178,7 @@ const router = createRouter({
                         {
                             path: ':id/edit',
                             name: 'admin.reviews.edit',
-                            component: () => import('../views/admin/review/AdminReviewEdit.vue'),
+                            component: () => import('@views/admin/review/AdminReviewEdit.vue'),
                             props: true,
                             meta: {
                                 title: "Админ-панель | Редактирование отзыва"
@@ -186,7 +189,7 @@ const router = createRouter({
                 {
                     path: 'settings',
                     name: 'admin.settings',
-                    component: () => import('../views/admin/settings/AdminSettings.vue'),
+                    component: () => import('@views/admin/settings/AdminSettings.vue'),
                     meta: {
                         title: "Админ панель | Настройки"
                     }
@@ -196,9 +199,18 @@ const router = createRouter({
         },
 
         {
+            path:'/auth/login',
+            name:'login',
+            component: () => import('@views/auth/Login.vue'),
+            meta: {
+                title: "Вход"
+            },
+        },
+
+        {
             path: "/:pathMatch(.*)*",
             name: "NotFound",
-            component: () => import('../views/errors/NotFound .vue'),
+            component: () => import('@views/errors/NotFound .vue'),
             meta: {
                 title: "Страница не найдена"
             },
@@ -207,6 +219,15 @@ const router = createRouter({
 })
 router.beforeEach((to, from, next) => {
     document.title = `Graze | ${to.meta.title}`
+    // console.log(useAuthStore().isAuth)
+    // if (to.meta.requiresAuth && useAuthStore().isAuth) {
+    //     console.log(to.fullPath)
+    //     // return {
+    //     //     path: '/login',
+    //     //     // save the location we were at to come back later
+    //     //     query: { redirect: to.fullPath },
+    //     // }
+    // }
     next()
 })
 export default router

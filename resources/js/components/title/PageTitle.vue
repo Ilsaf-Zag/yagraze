@@ -9,6 +9,6 @@
 
 <script setup>
 
-import IconLongLine from "@components/icons/IconLongLine.vue";
+import IconLongLine from "@components/icons/lines/IconLongLine.vue";
 </script>
 

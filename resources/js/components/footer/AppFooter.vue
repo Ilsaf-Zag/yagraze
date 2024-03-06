@@ -1,10 +1,10 @@
 <script setup>
 import {reactive, ref, toRef} from 'vue'
-import IconFooterLogo from "@components/icons/Logos/IconFooterLogo.vue";
+import IconFooterLogo from "@components/icons/logos/IconFooterLogo.vue";
 import {breakpoints} from "@mixins/breakpointsMixin.js";
-import IconTelegram from "@components/icons/SocialNetwork/IconTelegram.vue";
-import IconVk from "@components/icons/SocialNetwork/IconVk.vue";
-import IconBehance from "@components/icons/SocialNetwork/IconBehance.vue";
+import IconTelegram from "@components/icons/socialNetwork/IconTelegram.vue";
+import IconVk from "@components/icons/socialNetwork/IconVk.vue";
+import IconBehance from "@components/icons/socialNetwork/IconBehance.vue";
 import axios from "axios";
 
 const largerThanSm = breakpoints.greater('sm')

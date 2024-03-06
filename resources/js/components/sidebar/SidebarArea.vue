@@ -1,13 +1,13 @@
 <template>
 
     <aside ref="target" class="w-1/5  bg-black2 gray min-h-screen flex flex-col px-6 z-10 lg:fixed lg:w-1/4 lg:px-3 md:w-1/3 sm:w-1/2"
-        :class="[showSidebarStore.showSideBar ?'w-2/4 visible lg:px-8 ':'lg:w-0 lg:invisible lg:px-0']"
+           :class="[showSidebarStore.showSideBar ?'w-2/4 visible lg:px-8 ':'lg:w-0 lg:invisible lg:px-0']"
     >
-       <div class="min-h-16 flex items-center">
+        <div class="min-h-16 flex items-center">
             <router-link :to="{name:'home'}">
                 <IconLogo class="w-12 lg:hidden lg:w-10" />
             </router-link>
-       </div>
+        </div>
         <div class="min-h-screen">
             <nav>
                 <div class="border-b-2">
@@ -44,14 +44,12 @@
     </aside>
 </template>
 <script setup>
-import IconLogo from "@components/icons/Logos/IconLogo.vue";
-import {breakpoints} from "@mixins/breakpointsMixin.js";
+import IconLogo from "@components/icons/logos/IconLogo.vue";
 import { onClickOutside } from '@vueuse/core'
 import {useShowSidebarStore} from '@stores/showSidebarStore.js';
 import {ref} from "vue";
 
 const showSidebarStore = useShowSidebarStore()
-const largerThanLg = breakpoints.greater('lg')
 
 const target = ref(null)
 

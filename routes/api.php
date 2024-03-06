@@ -4,6 +4,8 @@ use App\Http\Controllers\API\Admin\DesignController;
 use App\Http\Controllers\API\Admin\IllustrationController;
 use App\Http\Controllers\API\Admin\ReviewController;
 use App\Http\Controllers\API\Admin\SettingController;
+use App\Http\Controllers\Auth\AuthController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,27 +27,27 @@ Route::get('/reviews/all', [\App\Http\Controllers\API\User\ReviewController::cla
 Route::get('/reviews/randomValues', [\App\Http\Controllers\API\User\ReviewController::class, 'randomValues']);
 
 
-Route::prefix('admin')->group(function () {
 
-    Route::patch('/illustrations/sort', [IllustrationController::class,'sorted']);
-    Route::patch('/designs/sort', [DesignController::class,'sorted']);
 
-    Route::resource('illustrations' , IllustrationController::class)->except(['create','show']);
-    Route::resource('designs' , DesignController::class)->except(['create','show']);
-    Route::resource('reviews' , ReviewController::class)->except(['create','show']);
 
-    Route::controller(SettingController::class)->group(function (){
-        Route::get('/settings/all', 'getSettingsAll');
-        Route::get('/settings', 'getSettings');
-        Route::post('/settings','setSettings');
+
+//Route::controller(AuthController::class)->group(function(){
+//    Route::post('register', 'register');
+//    Route::post('login', 'login');
+//});
+
+Route::middleware('auth:sanctum')->group(function (){
+    Route::prefix('admin')->group(function () {
+        Route::patch('/illustrations/sort', [IllustrationController::class,'sorted']);
+        Route::patch('/designs/sort', [DesignController::class,'sorted']);
+
+        Route::resource('illustrations' , IllustrationController::class)->except(['create','show']);
+        Route::resource('designs' , DesignController::class)->except(['create','show']);
+        Route::resource('reviews' , ReviewController::class)->except(['create','show']);
+
+        Route::controller(SettingController::class)->group(function (){
+            Route::get('/settings', 'getSettings');
+            Route::post('/settings','setSettings');
+        });
     });
 });
-
-
-
-
-
-
-//Route::middleware('auth:sanctum)->get('/user', function (Request $request) {
-//    return $request->user();
-//});

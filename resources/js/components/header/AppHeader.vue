@@ -83,12 +83,13 @@
 
 
 <script setup>
-import IconDefaultLogo from "@components/icons/Logos/IconDefaultLogo.vue";
-import {breakpoints} from "@mixins/breakpointsMixin.js";
+import IconDefaultLogo from "@components/icons/logos/IconDefaultLogo.vue";
 import IconBurger from "@components/icons/IconBurger.vue";
 import {ref} from "vue";
 import IconMark from "@components/icons/IconMark.vue";
+import {useBreakpointsStore} from "@stores/breakpointsStore.js";
 
+const breakpoints = useBreakpointsStore().breakpoints
 
 const largerThanSm = breakpoints.greater('sm')
 const isOpen = ref(false)

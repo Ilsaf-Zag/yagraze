@@ -20,6 +20,10 @@ class SettingController extends Controller
             $data = $setting->data;
             $list = [];
 
+            if(empty(\request()->all())) {
+                return $setting;
+            }
+
             foreach (\request()->all() as $key) {
                 if (array_key_exists($key, $data)) {
                     $list[$key] = $data[$key];
@@ -28,16 +32,6 @@ class SettingController extends Controller
 
             return $list;
         }
-    }
-
-    public function getSettingsAll()
-    {
-        $setting = Setting::query()->first();
-
-        if (!is_null($setting)) {
-            $setting->meta;
-            return $setting;
-        };
     }
 
     /**
