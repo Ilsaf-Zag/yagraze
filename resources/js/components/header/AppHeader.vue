@@ -43,26 +43,9 @@
                 </template>
                 <template v-else>
                     <nav v-if="isOpen" class="absolute right-0 top-0 min-h-screen flex items-center w-full bg-black2/75 text-white">
-                        <ul class="w-full flex flex-col items-end text-2xl space-y-5 mt-24 mr-4 font-bold">
-                            <li>
-                                <router-link :to="{name:'home'}" exact>Главная</router-link>
-                            </li>
-
-                            <li>
-                                <router-link :to="{name:'designs'}" class="py-1">Дизайн</router-link>
-                            </li>
-                            <li>
-                                <router-link :to="{name:'illustrations'}" class="py-1">Иллюстрации</router-link>
-                            </li>
-
-                            <li>
-                                <router-link :to="{name:'services'}" class="py-1">Мои услуги</router-link>
-                            </li>
-                            <li class="">
-                                <router-link :to="{name:'reviews'}" class="py-1">Отзывы</router-link>
-                            </li>
-                            <li>
-                                <router-link :to="{name:'contacts'}">Контакты</router-link>
+                        <ul class="w-full flex flex-col items-end text-2xl space-y-5 mt-24 mr-4">
+                            <li @click="isOpen = !isOpen"  v-for="item of routesListMobile">
+                                <router-link :to="{name:item.name}">{{ item.text }}</router-link>
                             </li>
                         </ul>
                     </nav>
@@ -93,4 +76,32 @@ const breakpoints = useBreakpointsStore().breakpoints
 
 const largerThanSm = breakpoints.greater('sm')
 const isOpen = ref(false)
+
+const routesListMobile = [
+    {
+        name:'home',
+        text:'Главная'
+    },
+    {
+        name:'designs',
+        text:'Дизайн'
+    },
+    {
+        name:'illustrations',
+        text:'Иллюстрации'
+    },
+    {
+        name:'services',
+        text:'Мои услуги'
+    },
+    {
+        name:'reviews',
+        text:'Отзывы'
+    },
+    {
+        name:'contacts',
+        text:'Контакты'
+    },
+]
+
 </script>

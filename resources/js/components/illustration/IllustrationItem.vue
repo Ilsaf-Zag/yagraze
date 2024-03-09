@@ -18,7 +18,6 @@ defineProps(['illustration'])
 .illustrations__block {
     display: block;
     position: relative;
-    cursor: pointer;
     margin-bottom: 30px;
     max-width: 320px;
 }
@@ -38,7 +37,7 @@ defineProps(['illustration'])
 .illustrations__img {
     width: 100%;
     pointer-events: none;
-    border-radius: 25px;
+    border-radius: 20px;
     display: block;
 }
 
@@ -56,7 +55,7 @@ defineProps(['illustration'])
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 25px;
+    border-radius: 20px;
 
 }
 
@@ -66,10 +65,9 @@ defineProps(['illustration'])
     justify-content: center;
     max-width: 190px;
     width: 100%;
-    border: 1px solid #fff;
     font-size: 17px;
     color: #fff;
     height: 40px;
-    border-radius: 15px;
+    border-radius: 20px;
 }
 </style>

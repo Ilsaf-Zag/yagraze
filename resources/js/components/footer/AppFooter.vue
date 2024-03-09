@@ -1,64 +1,4 @@
-<script setup>
-import {reactive, ref, toRef} from 'vue'
-import IconFooterLogo from "@components/icons/logos/IconFooterLogo.vue";
-import {breakpoints} from "@mixins/breakpointsMixin.js";
-import IconTelegram from "@components/icons/socialNetwork/IconTelegram.vue";
-import IconVk from "@components/icons/socialNetwork/IconVk.vue";
-import IconBehance from "@components/icons/socialNetwork/IconBehance.vue";
-import axios from "axios";
-
-const largerThanSm = breakpoints.greater('sm')
-
-const socialMediaLinks = reactive({
-    vk: '',
-    telegram: '',
-    behance: ''
-})
-
-const googleFormLink = reactive({
-    googleForm: ''
-})
-
-const menus = ref([
-    {
-        title: 'Меню',
-        items: [
-            {text: 'Главная', routeName: "home"},
-            {text: 'Дизайн', routeName: "designs"},
-            {text: 'Иллюстрации', routeName: "illustrations"},
-            {text: 'Контакты', routeName: 'contacts'}
-        ]
-    },
-    {
-        title: "Соц.сети",
-        items: [
-            {text: 'Vkontakte', link: toRef(() => socialMediaLinks.vk)},
-            {text: 'Telegram', link: toRef(() => socialMediaLinks.telegram)},
-            {text: 'Behance', link: toRef(() => socialMediaLinks.behance)},
-        ]
-    },
-    {
-        title: 'Полезное',
-        items: [
-            {text: 'Бриф на заказ', link: toRef(() => googleFormLink.googleForm)},
-
-        ]
-    }
-])
-
-axios.get('/api/admin/settings', {params: ['socialMediaLinks', 'googleFormLink']})
-    .then(res => {
-        console.log(res)
-        if (res.data) {
-            Object.assign(socialMediaLinks, res.data.socialMediaLinks)
-            Object.assign(googleFormLink, res.data.googleFormLink)
-        }
-    })
-
-</script>
-
 <template>
-    <!-- ====== Footer Section Start -->
     <footer class="relative z-10 bg-black pt-20 pb-10 lg:pt-[120px] lg:pb-10 lg:pt-10 sm:py-4">
         <div class="container mx-auto">
             <div class="flex justify-between items-center">
@@ -95,8 +35,7 @@ axios.get('/api/admin/settings', {params: ['socialMediaLinks', 'googleFormLink']
                 </div>
 
                 <div
-                    v-if="largerThanSm"
-                    class="flex justify-between  max-w-[800px] w-full pr-0 shadow-7 rounded-[50px] py-11 px-11 lg:px-4 lg:py-4">
+                    class="sm:hidden flex justify-between  max-w-[800px] w-full pr-0 shadow-7 rounded-[50px] py-11 px-11 lg:px-4 lg:py-4">
                     <div v-for="menu in menus" :key="menu.title" class="w-full px-4">
                         <div class="w-full mb-10 lg:mb-4">
                             <h4 class="text-lg text-gray2 font-semibold mb-9 lg:my-4 lg:text-base">{{ menu.title }}</h4>
@@ -127,3 +66,43 @@ axios.get('/api/admin/settings', {params: ['socialMediaLinks', 'googleFormLink']
         </div>
     </footer>
 </template>
+
+<script setup>
+import {ref, toRef} from 'vue'
+import IconFooterLogo from "@components/icons/logos/IconFooterLogo.vue";
+import IconTelegram from "@components/icons/socialNetwork/IconTelegram.vue";
+import IconVk from "@components/icons/socialNetwork/IconVk.vue";
+import IconBehance from "@components/icons/socialNetwork/IconBehance.vue";
+import {useSettingsStore} from "@stores/settingsStore.js";
+
+const socialMediaLinks = useSettingsStore().settings.socialMediaLinks
+const googleFormLink = useSettingsStore().settings.googleFormLink
+
+const menus = ref([
+    {
+        title: 'Меню',
+        items: [
+            {text: 'Главная', routeName: "home"},
+            {text: 'Дизайн', routeName: "designs"},
+            {text: 'Иллюстрации', routeName: "illustrations"},
+            {text: 'Контакты', routeName: 'contacts'}
+        ]
+    },
+    {
+        title: "Соц.сети",
+        items: [
+            {text: 'Vkontakte', link: toRef(() => socialMediaLinks.vk)},
+            {text: 'Telegram', link: toRef(() => socialMediaLinks.telegram)},
+            {text: 'Behance', link: toRef(() => socialMediaLinks.behance)},
+        ]
+    },
+    {
+        title: 'Полезное',
+        items: [
+            {text: 'Бриф на заказ', link: toRef(() => googleFormLink.googleForm)},
+
+        ]
+    }
+])
+
+</script>

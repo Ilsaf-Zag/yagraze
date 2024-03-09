@@ -4,25 +4,24 @@
             <Title>Некоторые отзывы клиентов</Title>
             <IconDefaultLine class="w-[440px] mx-auto mt-9 lg:w-[300px] sm:mt-6"/>
             <div
-                class="relative shadow-4 w-full pt-[48px] pb-[68px] px-[90px] lg:px-10 mt-12 bg-smoky rounded-[50px] sm:mt-10  sm:p-6">
+                class="relative shadow-4 w-full py-12 px-[90px] lg:px-10 mt-12 bg-smoky rounded-[50px] lg:py-8 sm:mt-10  sm:p-6">
                 <Splide
                     v-if="reviews"
                     :has-track="false"
                     :options="{
                                 perPage:1,
-                                 speed:1000,
                                 height:500,
                                  type   : 'loop',
                                  breakpoints: {
                                     1024:{
-                                        height:400
+                                        height:350
                                     },
 
                                     640: {
                                         arrows:false,
                                         height:300
                                     },
-                              },
+                                },
                                 pagination:false,
 
                                 keyboard:'global',
@@ -38,11 +37,11 @@
                     <SplideTrack class="text-3xl leading-[45px] relative">
                         <SplideSlide class="overflow-y-auto overflow-x-hidden" v-for="review in reviews"
                                      :key="review.id">
-                            <div class="max-h-[300px] sm:max-h-[200px]  sm:text-xl overflow-y-auto">
+                            <div class="max-h-[300px] lg:max-h-[250px]  sm:max-h-[200px]  sm:text-xl overflow-y-auto">
                                 {{ review.text }}
                             </div>
                             <a :href="review.customer_link"
-                               class=" flex absolute bottom-[100px] lg:bottom-20 sm:text-xl sm:bottom-4 right-0 z-10">{{
+                               class=" flex absolute bottom-[100px] lg:bottom-10 sm:text-xl sm:bottom-9 right-0 z-10">{{
                                     review.customer_name
                                 }}</a>
                         </SplideSlide>

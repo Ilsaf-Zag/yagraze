@@ -1,5 +1,5 @@
 import {createRouter, createWebHistory} from 'vue-router'
-import {useAuthStore} from "@stores/authStore.js";
+import {useUserStore} from "@stores/userStore.js";
 
 
 const router = createRouter({
@@ -66,7 +66,7 @@ const router = createRouter({
             path: '/admin',
             component: () => import('@views/admin/AdminView.vue'),
             meta:{
-                requiresAuth: true
+                requiresAdmin: true
             },
 
             children: [
@@ -75,7 +75,7 @@ const router = createRouter({
                     name: 'admin.home',
                     component: () => import('@views/admin/home/AdminHome.vue'),
                     meta: {
-                        title: "Админ-панель | Главная"
+                        title: "Админ-панель | Главная",
                     },
                 },
                 {
@@ -217,17 +217,14 @@ const router = createRouter({
         },
     ]
 })
-router.beforeEach((to, from, next) => {
+router.beforeResolve( async (to, from) => {
+    const user = useUserStore();
+
+    if (to.meta.requiresAdmin && !user.isAdmin) {
+        await user.checkAdmin();
+    }
+
     document.title = `Graze | ${to.meta.title}`
-    // console.log(useAuthStore().isAuth)
-    // if (to.meta.requiresAuth && useAuthStore().isAuth) {
-    //     console.log(to.fullPath)
-    //     // return {
-    //     //     path: '/login',
-    //     //     // save the location we were at to come back later
-    //     //     query: { redirect: to.fullPath },
-    //     // }
-    // }
-    next()
+
 })
 export default router

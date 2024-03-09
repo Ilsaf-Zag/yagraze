@@ -1,27 +1,43 @@
 <template>
     <Splide
+        v-if="reviews"
         ref="splide"
         @splide:moved="moved"
+        :has-track="false"
         :options="{
-
             perPage:1,
-            height:'300px',
-            arrows:false,
+            height:500,
+            type   : 'loop',
+            breakpoints: {
+                1024:{
+                    height:400
+                },
+                640: {
+                    height:300
+                },
+            },
             pagination:false,
-            speed:1000,
-            classes:{
-                 pagination: 'splide__pagination splide__pagination--custom', // container
-                        page: 'splide__pagination__page splide__pagination__page--custom', // each button
-            } }"
-        aria-label="My Favorite Images"
-        :has-track="false">
+            arrows:false,
+            keyboard:'global',
+
+            classes:
+                 {
+                    pagination: 'splide__pagination splide__pagination--custom',
+                    page: 'splide__pagination__page splide__pagination__page--custom'
+                }
+        }">
+
         <SplideTrack class="text-3xl leading-[45px]">
             <template v-for="review in reviews"
                       :key="review.id">
-                <SplideSlide
-                    v-if="review.category === category"
-                >
-                    {{ review.text }}
+                <SplideSlide v-if="review.category === category" class="overflow-y-auto overflow-x-hidden">
+                    <div class="max-h-[300px] sm:max-h-[200px]  sm:text-xl overflow-y-auto">
+                        {{ review.text }}
+                    </div>
+                    <a :href="review.customer_link"
+                       class=" flex absolute bottom-[100px] lg:bottom-20 sm:text-xl sm:bottom-4 right-0 z-10">{{
+                            review.customer_name
+                        }}</a>
                 </SplideSlide>
             </template>
 
@@ -30,15 +46,15 @@
 
 
     <div
-        class="splide__arrows  w-36 p-1.5 sm:p-1 sm:w-20  flex items-center justify-between rounded-lg shadow-12">
+        class="splide__arrows  w-40 p-1.5 sm:p-1 flex items-center justify-between rounded-2xl shadow-12">
 
         <button @click="splide.go('-1')"
-                class="w-full flex justify-center items-center rounded-2xl w-7 h-14 sm:h-10 sm:w-7 mt-0.5"
+                class="flex justify-center items-center rounded-xl w-10 h-14"
                 :class="[activeIndex === 0?'splide__arrow--disabled':'']"
         >
-            <IconArrowLeft class="pointer-events-none w-4 sm:w-3"/>
+            <IconArrowLeft class="pointer-events-none w-4"/>
         </button>
-        <div>
+        <div class="p-2">
             <Splide
                 v-if="reviews"
                 :has-track="false"
@@ -49,10 +65,10 @@
                     pagination:false,
                     perPage:2,
                     width:40,
-                    speed:500,
                     keyboard:'global',
                     perMove:1,
-                    focus:'center',
+
+
                     arrows:false,
                     classes:
                     {
@@ -71,8 +87,12 @@
             </Splide>
         </div>
         <button @click="splide.go('+1')"
-                class="w-full flex justify-center items-center rounded-2xl w-7 h-14 sm:h-10 sm:w-7  mt-0.5">
-            <IconArrowRight class="pointer-events-none w-4 sm:w-3"/>
+                class="flex justify-center items-center rounded-xl w-10 h-14"
+
+                :class="[activeIndex === 0?'splide__arrow--disabled':'']"
+        >
+            <IconArrowRight class="pointer-events-none w-4"/>
+
         </button>
     </div>
 
@@ -83,13 +103,13 @@ import {Splide, SplideSlide, SplideTrack} from "@splidejs/vue-splide";
 import IconArrowRight from "@components/icons/arrows/IconArrowRight.vue";
 import IconArrowLeft from "@components/icons/arrows/IconArrowLeft.vue";
 import {ref} from "vue";
-
 import axios from "axios";
-import {useBreakpointsStore} from "@stores/breakpointsStore.js";
+import IconDevider from "@components/icons/IconDevider.vue";
+import DefaultButton from "@components/UI/Buttons/DefaultButton.vue";
 
+console.log(Splide)
 defineProps(['category'])
 
-const breakpoints = useBreakpointsStore().breakpoints
 const splide = ref()
 const splideArrows = ref()
 const reviews = ref()

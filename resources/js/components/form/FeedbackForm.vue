@@ -40,7 +40,7 @@
                 </DefaultButton>
             </form>
         </div>
-        <div v-else class="font-semibold text-3xl text-center text-orange sm:text-2xl sm:p-8">
+        <div v-else class="font-semibold text-3xl text-center text-orange sm:text-xl sm:p-8">
             <div>Спасибо!</div>
             <div>В скором времени свяжусь с вами.</div>
         </div>

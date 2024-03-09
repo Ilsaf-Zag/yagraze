@@ -9,8 +9,8 @@
                     <div class="text-center text-light-gray text-4xl mt-3 xl:text-4xl xl:text-left lg:text-3xl">
                         Владимира Долгова
                     </div>
-                    <DefaultButton @click="dialogVisible = true"
-                                   class="w-[350px] h-16 text-3xl shadow-8 mt-10 ml-12 lg:w-[280px] lg:h-12 lg:text-2xl lg:ml-2">
+                    <DefaultButton @click="$emit('showDialog')"
+                                   class="w-[350px] rounded-[20px] h-16 text-3xl shadow-8 mt-10 ml-12 lg:w-[280px] lg:h-12 lg:text-2xl lg:ml-2">
                         Сделать заказ
                     </DefaultButton>
                 </div>

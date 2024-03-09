@@ -8,7 +8,7 @@
     </template>
 
     <div class="h-full flex justify-end px-16 lg:px-0 items-center">
-            <button class="bg-red-700 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">Выйти</button>
+            <button @click="logout" class="bg-red-700 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">Выйти</button>
     </div>
 </header>
 </template>
@@ -18,16 +18,24 @@ import IconBurger from "@components/icons/IconBurger.vue";
 import {useShowSidebarStore} from '@stores/showSidebarStore.js';
 import IconMark from "@components/icons/IconMark.vue";
 import {ref} from "vue";
+import axios from "axios";
+import {useRouter} from "vue-router";
+import {useUserStore} from "@stores/userStore.js";
 
 
 const showSidebarStore = useShowSidebarStore()
+const router = useRouter()
 const isOpen = ref(false)
 const toggleSidebar =()=>{
     showSidebarStore.toggleSideBar()
 }
 
 function logout(){
-
+    axios.delete('/api/logout')
+        .then(res=>{
+            useUserStore().isAdmin = false
+            router.push({name:'home'})
+        })
 }
 
 </script>
