@@ -1,42 +1,71 @@
-version: '3'
-
+version: '3.8'
 services:
-    nginx:
-        image: nginx:latest
-        volumes:
-            - ./:/var/www
-            - ./_docker/nginx/conf.d:/etc/nginx/conf.d
-        ports:
-            - 80:80
-        depends_on:
-            - app
-        container_name: project_nginx
 
-    app:
+    # Backend контейнер
+    backend:
+        # Для установки нужных пакетов используем не чистый образ, а инструкции из конкретного файла Dockerfile
         build:
             context: .
-            dockerfile: _docker/backend/Dockerfile
+            dockerfile: ./docker/backend/Dockerfile
+        extra_hosts:
+            - "host.docker.internal:host-gateway"
+        restart: unless-stopped
+        tty: true
+        working_dir: /var/www
         volumes:
-            - ./:/var/www
-        container_name: project_app
+            - .:/var/www # Монтируем локальную папку в контейнер как /var/www
+            - ./docker/backend/php.ini:/usr/local/etc/php/php.ini
         depends_on:
             - db
+
+    # Nginx контейнер для вебсервера
+    nginx:
+        # Используем готовый образ для nginx контейнера
+        image: nginx:alpine
+        restart: unless-stopped
+        tty: true
+        ports:
+            - "80:80" # Внутренний порт контейнера пробрасываем на host машину
+        volumes:
+            - .:/var/www # Монтируем локальную папку в контейнер как /var/www
+            - ./docker/nginx/conf.d/:/etc/nginx/conf.d/ # Передаем в контейнер конфигурационные файлы nginx
+        depends_on:
+            - backend
+
+    # MySQL контейнер
+    db:
+        image: mysql:5.7.22
+        restart: unless-stopped
+        tty: true
+        ports:
+            - "3306:3306"
+        command: ['--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci','--default-authentication-plugin=mysql_native_password']
+        environment:
+            # Желаемые настройки для СУБД MySQL
+            MYSQL_DATABASE: laravel
+            MYSQL_ROOT_PASSWORD: 'root'
+            MYSQL_USER: 'appuser'
+            MYSQL_PASSWORD: 'appuser'
+        volumes:
+            - dbdata:/var/lib/mysql # Используем именованный том из блока volumes
+            - ./docker/mysql/my.cnf:/etc/mysql/my.cnf # Передаем в контейнер конфигурационный файл
+        healthcheck:
+            test: [ "CMD", "mysqladmin", "ping" ]
+
+    # Для сборки js
     node:
         build:
             context: .
-            dockerfile: _docker/nodejs/Dockerfile
-        volumes:
-            - ./:/var/www
-        container_name: node
-    db:
-        image: mysql:8.0
-        restart: always
-        volumes:
-            - ./tmp/db:/var/lib/mysql
-        environment:
-            MYSQL_DATABASE: laravel
-            MYSQL_ROOT_PASSWORD: root
+            dockerfile: ./docker/nodejs/Dockerfile
+        tty: true
         ports:
-            - 8101:3306
-        command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
-        container_name: project_db
+            - "5173:5173"
+        working_dir: /var/www
+        volumes:
+            - .:/var/www # Монтируем локальную папку в контейнер как /var/www
+
+# Тома
+volumes:
+    # Чтобы данные БД не пропадали после выключения создаем именованный том
+    dbdata:
+        driver: local
