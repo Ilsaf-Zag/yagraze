@@ -34,10 +34,6 @@ class SettingController extends Controller
         }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-
     public function setSettings(Request $request)
     {
         $data = $request->all();

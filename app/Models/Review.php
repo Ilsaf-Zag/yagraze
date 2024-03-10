@@ -20,4 +20,9 @@ class Review extends Model
     protected $casts = [
         'category_review' => CategoryReview::class
     ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
 }

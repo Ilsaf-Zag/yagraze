@@ -24,4 +24,9 @@ class Design extends Model implements Sortable
         'preview_url',
         'order'
     ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
 }

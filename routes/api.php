@@ -19,8 +19,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/illustrations', [\App\Http\Controllers\API\User\IllustrationController::class, 'index']);
-Route::get('/designs', [\App\Http\Controllers\API\User\DesignController::class, 'index']);
+Route::get('/illustrations', \App\Http\Controllers\API\User\IllustrationController::class);
+Route::get('/designs', \App\Http\Controllers\API\User\DesignController::class);
 Route::post('/send-mail', \App\Http\Controllers\API\User\SendMailController::class);
 
 Route::get('/reviews/all', [\App\Http\Controllers\API\User\ReviewController::class, 'all']);

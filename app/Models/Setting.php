@@ -17,6 +17,11 @@ class Setting extends Model
         'data' => 'array'
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
+
     public function getMetaAttribute($value)
     {
         return $this->attributes['data'];

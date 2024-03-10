@@ -23,4 +23,8 @@ class Illustration extends Model implements Sortable
         'order'
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
 }

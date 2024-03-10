@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ReviewResource;
 use App\Models\Review;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,8 @@ class ReviewController extends Controller
     {
         $reviews = Review::all();
 
-        return $reviews;
+        return ReviewResource::collection($reviews)->resolve();
+
     }
 
     public function randomValues(Request $request)
@@ -29,6 +31,6 @@ class ReviewController extends Controller
             ->limit($data['quantity'])
             ->get();
 
-        return $reviews;
+        return ReviewResource::collection($reviews)->resolve();
     }
 }

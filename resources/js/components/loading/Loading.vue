@@ -1,12 +1,10 @@
 <template>
-    <div v-if=isOpen class="fixed flex items-center justify-center min-w-full min-h-full bg-black2/25 left-0 top-0 z-[99999]">
         <div class="lds-ring ">
             <div></div>
             <div></div>
             <div></div>
             <div></div>
         </div>
-    </div>
 </template>
 
 <script setup>

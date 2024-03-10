@@ -107,7 +107,6 @@ import axios from "axios";
 import IconDevider from "@components/icons/IconDevider.vue";
 import DefaultButton from "@components/UI/Buttons/DefaultButton.vue";
 
-console.log(Splide)
 defineProps(['category'])
 
 const splide = ref()
