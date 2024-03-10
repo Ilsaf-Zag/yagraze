@@ -1,16 +1,22 @@
-FROM node:latest
+FROM node:lts-alpine
 
-# Install dependencies
-RUN apt-get update && apt-get install -y \
-    vim \
-    zip \
-    unzip \
-    curl
+# устанавливаем простой HTTP-сервер для статики
+RUN npm install -g http-server
 
-# Change current user
-USER node
+# делаем каталог 'app' текущим рабочим каталогом
+WORKDIR /app
 
-EXPOSE 5173
+# копируем оба 'package.json' и 'package-lock.json' (если есть)
+COPY package*.json ./
 
-# https://github.com/vitejs/vite/discussions/3396
-CMD ["sh", "-c", "npm install && npm run dev -- --host"]
+# устанавливаем зависимости проекта
+RUN npm install
+
+# копируем файлы и каталоги проекта в текущий рабочий каталог (т.е. в каталог 'app')
+COPY . .
+
+# собираем приложение для production с минификацией
+RUN npm run build
+
+EXPOSE 8080
+CMD [ "http-server", "dist" ]
