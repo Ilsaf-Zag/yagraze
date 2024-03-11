@@ -1,5 +1,5 @@
 <template>
-        <div class="lds-ring ">
+        <div v-if="isLoading" class="lds-ring ">
             <div></div>
             <div></div>
             <div></div>
@@ -8,9 +8,7 @@
 </template>
 
 <script setup>
-
-const isOpen = defineModel()
-
+const isLoading = defineModel()
 </script>
 
 <style scoped>

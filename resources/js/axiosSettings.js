@@ -1,6 +1,13 @@
 import axios from "axios";
 import router from "@/js/router/index.js";
+axios.interceptors.request.use(
+    (res)=>{
+        return res;
+    },
+    error => {
 
+        return Promise.reject(error);
+    });
 axios.interceptors.response.use(
     (res)=>{
         return res;
@@ -12,6 +19,5 @@ axios.interceptors.response.use(
         }
         return Promise.reject(error);
     });
-
 
 export default {axios}

@@ -5,8 +5,8 @@
             <Title>Дизайн</Title>
             <IconCircles class="absolute w-32 top-8 right-8 lg:hidden" />
 
-            <div v-if="loadingStore.isLoading" class="flex justify-center mt-16">
-                <Loading/>
+            <div v-if="isLoading" class="flex justify-center mt-16">
+                <Loading v-model="isLoading" class="flex justify-center mt-16" />
             </div>
             <div ref="wrapper" :class="[!loadingStore.isLoading ?'visible':'invisible']"
                  class="designs grid grid-cols-4 grid-rows-[repeat(auto-fill, minmax(0px, 1fr))] gap-8 mt-16 lg:mt-12 lg:grid-cols-3 sm:grid-cols-2 sm:mt-10">
@@ -52,6 +52,7 @@ const showHint = ref(false)
 const loadingStore = useLoadingStore()
 const target = ref(null)
 const timerId = ref()
+const isLoading = ref(false)
 
 
 onMounted(() => {
@@ -68,7 +69,7 @@ onClickOutside(target, () => {
 })
 
 function getDesigns() {
-    loadingStore.toggleLoad()
+    isLoading.value = true
 
     axios.get('/api/designs')
         .then((res) => {
@@ -79,7 +80,7 @@ function getDesigns() {
 
                 })
                     .on('done', () => {
-                        loadingStore.toggleLoad()
+                        isLoading.value = false
                     })
             })
         })

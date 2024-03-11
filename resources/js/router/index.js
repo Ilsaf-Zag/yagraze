@@ -1,5 +1,6 @@
 import {createRouter, createWebHistory} from 'vue-router'
 import {useUserStore} from "@stores/userStore.js";
+import {useLoadingStore} from "@stores/loadingStore.js";
 
 
 const router = createRouter({
@@ -217,6 +218,15 @@ const router = createRouter({
         },
     ]
 })
+
+router.beforeEach((to,from)=>{
+    const loadingStore = useLoadingStore()
+    loadingStore.isLoading = true
+})
+router.afterEach((to,from)=>{
+    const loadingStore = useLoadingStore()
+    loadingStore.isLoading = false
+})
 router.beforeResolve( async (to, from) => {
     const user = useUserStore();
 
@@ -225,6 +235,5 @@ router.beforeResolve( async (to, from) => {
     }
 
     document.title = `Graze | ${to.meta.title}`
-
 })
 export default router

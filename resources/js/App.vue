@@ -1,9 +1,11 @@
-<script setup>
-import { RouterLink, RouterView } from 'vue-router'
-</script>
 <template>
     <RouterView></RouterView>
+
+    <ModalLoading />
 </template>
 
-<style scoped>
-</style>
+<script setup>
+import { RouterLink, RouterView } from 'vue-router'
+import ModalLoading from "@components/loading/ModalLoading.vue";
+
+</script>

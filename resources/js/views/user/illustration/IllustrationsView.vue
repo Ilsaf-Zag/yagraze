@@ -3,8 +3,8 @@
             <Title>Иллюстрации</Title>
             <IconCircles class="absolute w-32 top-8 right-8 lg:hidden" />
 
-            <div v-if="loadingStore.isLoading" class="flex justify-center mt-16">
-                <Loading />
+            <div v-if="isLoading" class="flex justify-center mt-16">
+                <Loading v-model="isLoading" class="flex justify-center mt-16" />
             </div>
             <div :class="[!loadingStore.isLoading ?'visible':'invisible']" class="illustrations__wrapper mx-auto mt-16 sm:mt-8">
                 <div v-for="(illustration,index) in illustrations">
@@ -55,6 +55,7 @@ const isOpen = ref(false)
 const activeIndex = ref(0)
 const illustrations = ref();
 const loadingStore =  useLoadingStore()
+const isLoading = ref(false)
 
 function showSlider(id) {
     isOpen.value = true
@@ -66,7 +67,7 @@ onMounted(()=>{
 })
 
 function getIllustrations(){
-    loadingStore.toggleLoad()
+    isLoading.value = true
 
     axios.get('/api/illustrations')
         .then(res => {
@@ -80,7 +81,7 @@ function getIllustrations(){
 
                 })
                 b.on('done', () => {
-                    loadingStore.toggleLoad()
+                    isLoading.value = false
                 })
             })
         })
