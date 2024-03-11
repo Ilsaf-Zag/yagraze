@@ -21,7 +21,7 @@ class IllustrationController extends Controller
             'pageSize' => 'nullable|integer',
         ]);
 
-        $pageSize = $validated['pageSize'] || 8;
+        $pageSize = request()->input('pageSize', 8);
         $illustrations = Illustration::ordered()->paginate($pageSize);
 
         return $illustrations;

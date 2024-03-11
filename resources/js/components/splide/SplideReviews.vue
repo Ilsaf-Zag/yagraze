@@ -1,13 +1,11 @@
 <template>
     <Splide
-        v-if="reviews"
         ref="splide"
-        @splide:moved="moved"
+        @splide:move="moved"
         :has-track="false"
         :options="{
             perPage:1,
             height:500,
-            type   : 'loop',
             breakpoints: {
                 1024:{
                     height:400
@@ -56,17 +54,14 @@
         </button>
         <div class="p-2">
             <Splide
-                v-if="reviews"
                 :has-track="false"
                 ref="splideArrows"
                 :options="
                 {
                     fixedWidth:'20px',
                     pagination:false,
-                    perPage:2,
                     width:40,
                     keyboard:'global',
-                    perMove:1,
 
 
                     arrows:false,
@@ -79,7 +74,7 @@
                     }
                 }">
                 <SplideTrack>
-                    <SplideSlide v-if="reviews" class="overflow-y-auto overflow-x-hidden splide__slide--custom"
+                    <SplideSlide class="overflow-y-auto overflow-x-hidden splide__slide--custom"
                                  v-for="n in getCountCategory(category)">
                         {{ n }}
                     </SplideSlide>
@@ -89,7 +84,7 @@
         <button @click="splide.go('+1')"
                 class="flex justify-center items-center rounded-xl w-10 h-14"
 
-                :class="[activeIndex === 0?'splide__arrow--disabled':'']"
+                :class="[splideArrows?.length - 1 === activeIndex?'splide__arrow--disabled':'']"
         >
             <IconArrowRight class="pointer-events-none w-4"/>
 
@@ -107,29 +102,22 @@ import axios from "axios";
 import IconDevider from "@components/icons/IconDevider.vue";
 import DefaultButton from "@components/UI/Buttons/DefaultButton.vue";
 
-defineProps(['category'])
+const props = defineProps(['category','reviews'])
 
 const splide = ref()
 const splideArrows = ref()
-const reviews = ref()
 const activeIndex = ref(0)
-
-axios.get('/api/reviews/all')
-    .then(res => {
-        reviews.value = res.data
-    })
 
 function moved(splide, newIndex) {
     event.preventDefault()
-    splideArrows.value.go(newIndex)
-
+    console.log(splideArrows.value.length)
+splideArrows.value.go(newIndex)
     activeIndex.value = splide.index
 }
 
 function getCountCategory(category) {
     let count = 0
-
-    for (const review of reviews.value) {
+    for (const review of props.reviews) {
         if (review.category === category) count++
     }
 

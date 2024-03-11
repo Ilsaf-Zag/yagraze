@@ -4,14 +4,13 @@
             <Title>Некоторые отзывы клиентов</Title>
             <IconDefaultLine class="w-[440px] mx-auto mt-9 lg:w-[300px] sm:mt-6"/>
             <div
+                v-if="reviews"
                 class="relative shadow-4 w-full py-12 px-[90px] lg:px-10 mt-12 bg-smoky rounded-[50px] lg:py-8 sm:mt-10  sm:p-6">
                 <Splide
-                    v-if="reviews"
                     :has-track="false"
                     :options="{
                                 perPage:1,
                                 height:500,
-                                 type   : 'loop',
                                  breakpoints: {
                                     1024:{
                                         height:350

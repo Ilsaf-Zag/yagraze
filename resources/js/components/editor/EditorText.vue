@@ -1,7 +1,7 @@
 <template>
     <Editor
         disabled="true"
-        api-key="ld7qq5grkd3jqq1hbiu1pqrvjdi3u3pe1cygj4ilbklbrh6t"
+        api-key="zh8yvlixwacb5t6ymp0xjb3awwwadmezlvrr8jen8rneudgt"
         v-model="text"
         :init="{
             toolbar_mode: 'sliding',

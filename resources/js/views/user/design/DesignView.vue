@@ -17,7 +17,7 @@
                     :design="design"
                 />
             </div>
-            <div v-if="isOpen" class="bg-black/25  fixed z-20 w-full h-full top-0 left-0 overflow-y-auto">
+            <div v-if="isOpen" class="bg-black/25 px-4 fixed z-20 w-full h-full top-0 left-0 overflow-y-auto">
                 <div  ref="target"
                      class="max-w-[600px] mx-auto mt-32">
                     <img class="h-full w-full" :src="`/images/design/${designs[activeIndex].url}`" alt="">

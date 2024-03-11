@@ -20,7 +20,7 @@ class DesignController extends Controller
             'pageSize' => 'nullable|integer',
         ]);
 
-        $pageSize = $validated['pageSize'] || 8;
+        $pageSize = request()->input('pageSize', 8);
         $designs = Design::ordered()->paginate($pageSize);
 
         return $designs;
