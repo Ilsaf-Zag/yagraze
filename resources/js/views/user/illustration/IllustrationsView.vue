@@ -22,6 +22,11 @@
                     arrows:true,
                     height:'calc(100vh - 40px)',
                     width:'calc(100vw - 100px)',
+                    breakpoints:{
+                        640:{
+                            width:'calc(100vw - 20px)'
+                        }
+                    },
                     keyboard:'global'
                     }">
 

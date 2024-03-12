@@ -33,7 +33,7 @@
                         {{ review.text }}
                     </div>
                     <a target="_blank" :href ="review.customer_link"
-                       class=" flex absolute bottom-[100px] lg:bottom-20 sm:text-xl sm:bottom-4 right-0 z-10">{{
+                       class=" flex absolute bottom-[100px] lg:bottom-20 sm:text-lg font-bold text-right sm:bottom-4 right-0 z-10">{{
                             review.customer_name
                         }}</a>
                 </SplideSlide>

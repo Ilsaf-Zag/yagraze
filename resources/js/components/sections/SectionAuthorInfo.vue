@@ -1,7 +1,7 @@
 <template>
     <section>
         <div class='mx-20 lg:mx-4'>
-            <div class="about-me relative bg-smoky  rounded-6xl shadow-2 rounded-[70px]">
+            <div class="about-me relative bg-smoky shadow-2 rounded-[70px] sm:rounded-[30px]">
 
                 <div class="flex sm:flex-col sm:items-center sm:p-4">
                     <img
