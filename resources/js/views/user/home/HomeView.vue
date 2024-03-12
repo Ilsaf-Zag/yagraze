@@ -8,7 +8,7 @@
     <Modal v-model="dialogVisible">
         <FeedbackForm
             v-model="isFormSent"
-            class="form bg-black/70 text-white border-black/10 backdrop-blur-2xl max-w-[800px] shadow-3 max-h-[420px] md:max-h-[500px] sm:w-full md:mx-4 sm:mx-2"
+            class="form mx-auto bg-black/70 text-white border-black/10 backdrop-blur-2xl max-w-[800px] shadow-3 max-h-[420px] md:max-h-[500px] sm:w-full md:mx-4 sm:mx-2"
         >
             Отправить
         </FeedbackForm>
