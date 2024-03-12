@@ -32,7 +32,7 @@
 
                 <SplideSlide class="flex items-center justify-center" v-for="illustration in illustrations"
                                  @click.stop="isOpen = false">
-                        <img class="illustrations__image mx-auto" @click.stop
+                        <img class="illustrations__image mx-auto sm:w-full" @click.stop
                              :src="'/images/illustration/' + illustration.url" :alt="illustration.name">
                     </SplideSlide>
                 </Splide>
