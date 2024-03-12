@@ -100,6 +100,7 @@ function getDesign () {
 
             design.value = res.data
             form.name = res.data.name
+            form.description = res.data.description
 
             dropzoneInit(dropzonePreview,`preview/${design.value.preview_url}`)
             dropzoneInit(dropzone,design.value.url)

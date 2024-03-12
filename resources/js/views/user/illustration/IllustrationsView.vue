@@ -1,43 +1,37 @@
 <template>
-        <section class="py-20 sm:py-14 relative min-h-screen">
-            <Title>Иллюстрации</Title>
-            <IconCircles class="absolute w-32 top-8 right-8 lg:hidden" />
+    <section class="py-20 sm:py-14 relative min-h-screen">
+        <Title>Иллюстрации</Title>
+        <IconCircles class="absolute w-32 top-8 right-8 lg:hidden" />
 
-            <div v-if="isLoading" class="flex justify-center mt-16">
-                <Loading v-model="isLoading" class="flex justify-center mt-16" />
+        <div v-if="isLoading" class="flex justify-center mt-16">
+            <Loading v-model="isLoading" class="flex justify-center mt-16" />
+        </div>
+        <div :class="[!loadingStore.isLoading ?'visible':'invisible']" class="illustrations__wrapper mx-auto mt-16 sm:mt-8">
+            <div v-for="(illustration,index) in illustrations">
+                <IllustrationItem
+                    @click="showSlider(index)"
+                    :illustration="illustration"
+                />
             </div>
-            <div :class="[!loadingStore.isLoading ?'visible':'invisible']" class="illustrations__wrapper mx-auto mt-16 sm:mt-8">
-                <div v-for="(illustration,index) in illustrations">
-                    <IllustrationItem
-                        @click="showSlider(index)"
-                        :illustration="illustration"
-                    />
-                </div>
-            </div>
-            <Modal class="z-[999]" v-model="isOpen">
-                <Splide :options="{
+        </div>
+        <Modal class="z-[999]"  v-model="isOpen">
+            <Splide :options="{
                     start:activeIndex,
                     perPage:1,
                     pagination:false,
                     arrows:true,
-                    height:'calc(100vh - 40px)',
-                    width:'calc(100vw - 100px)',
-                    breakpoints:{
-                        640:{
-                            width:'calc(100vw - 20px)'
-                        }
-                    },
+
                     keyboard:'global'
                     }">
 
                 <SplideSlide class="flex items-center justify-center" v-for="illustration in illustrations"
-                                 @click.stop="isOpen = false">
-                        <img class="illustrations__image mx-auto sm:w-full" @click.stop
-                             :src="'/images/illustration/' + illustration.url" :alt="illustration.name">
-                    </SplideSlide>
-                </Splide>
-            </Modal>
-        </section>
+                             @click.stop="isOpen = false">
+                    <img class="illustrations__image mx-auto sm:max-w-[calc(100vw - 20px)]" @click.stop
+                         :src="'/images/illustration/' + illustration.url" :alt="illustration.name">
+                </SplideSlide>
+            </Splide>
+        </Modal>
+    </section>
 
 </template>
 
@@ -94,8 +88,8 @@ function getIllustrations(){
 </script>
 <style>
 .illustrations__image {
-    max-height: 100%;
-    max-width:100%;
+    max-height:calc(100vh - 40px);
+    max-width:calc(100vw - 20px);
 
 }
 </style>
