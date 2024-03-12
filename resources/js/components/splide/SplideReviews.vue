@@ -32,7 +32,7 @@
                     <div class="max-h-[300px] sm:max-h-[200px]  sm:text-xl overflow-y-auto">
                         {{ review.text }}
                     </div>
-                    <a :href="review.customer_link"
+                    <a target="_blank" :href ="review.customer_link"
                        class=" flex absolute bottom-[100px] lg:bottom-20 sm:text-xl sm:bottom-4 right-0 z-10">{{
                             review.customer_name
                         }}</a>

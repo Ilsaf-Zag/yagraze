@@ -1,5 +1,5 @@
 <template>
-        <section class="py-20 relative min-h-screen">
+        <section class="py-20 sm:py-14 relative min-h-screen">
             <Title>Иллюстрации</Title>
             <IconCircles class="absolute w-32 top-8 right-8 lg:hidden" />
 

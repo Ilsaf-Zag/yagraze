@@ -1,5 +1,5 @@
 <template>
-    <section class="py-20 relative">
+    <section class="py-20 sm:py-14 relative">
         <div class="container">
             <Title>Контакты</Title>
             <IconCircles class="absolute w-32 top-8 right-8 lg:hidden"/>
@@ -19,15 +19,15 @@
                         сети:</h3>
                     <div class="mt-7 flex space-x-16 justify-center sm:space-x-8">
 
-                        <a :href="socialMediaLinks.telegram"
+                        <a target="_blank" :href ="socialMediaLinks.telegram"
                            class="shadow-11 rounded-3xl bg-smoky w-[120px] h-[120px] 2xl:w-24 2xl:h-24 xl:w-20 xl:h-20  p-8 xl:p-6 flex items-center justify-center">
                             <IconTelegram/>
                         </a>
-                        <a :href="socialMediaLinks.vk"
+                        <a target="_blank" :href ="socialMediaLinks.vk"
                            class="shadow-11 rounded-3xl bg-smoky w-[120px] h-[120px] 2xl:w-24 2xl:h-24 xl:w-20 xl:h-20  p-8 xl:p-6 flex items-center justify-center">
                             <IconVk/>
                         </a>
-                        <a :href="socialMediaLinks.whatsApp"
+                        <a target="_blank" :href ="socialMediaLinks.whatsApp"
                            class="shadow-11 rounded-3xl bg-smoky w-[120px] h-[120px] 2xl:w-24 2xl:h-24 xl:w-20 xl:h-20  p-8 xl:p-6 flex items-center justify-center">
                             <IconWhatsUp/>
                         </a>

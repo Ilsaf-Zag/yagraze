@@ -39,8 +39,8 @@
                             <div class="max-h-[300px] lg:max-h-[250px]  sm:max-h-[200px]  sm:text-xl overflow-y-auto">
                                 {{ review.text }}
                             </div>
-                            <a :href="review.customer_link"
-                               class=" flex absolute bottom-[100px] lg:bottom-10 sm:text-xl sm:bottom-9 right-0 z-10">{{
+                            <a target="_blank" :href ="review.customer_link"
+                               class=" flex absolute bottom-[100px] lg:bottom-10 sm:text-lg sm:bottom-9 right-0 z-10 font-bold text-right">{{
                                     review.customer_name
                                 }}</a>
                         </SplideSlide>

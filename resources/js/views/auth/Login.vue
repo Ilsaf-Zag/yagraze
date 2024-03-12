@@ -42,12 +42,15 @@
             </form>
         </div>
     </div>
+    <ModalLoading />
 </template>
 
 <script setup>
 import {reactive} from "vue";
 import axios from "axios";
 import {useRouter} from "vue-router";
+import {useLoadingStore} from "@stores/loadingStore.js";
+import ModalLoading from "@components/loading/ModalLoading.vue";
 
 const router = useRouter()
 const errors = reactive({
@@ -59,7 +62,11 @@ const form = reactive({
     password: ''
 })
 
+const loading = useLoadingStore()
+
 function login() {
+    loading.toggleLoad()
+
     axios.get('/sanctum/csrf-cookie').then(response => {
         axios.post('/api/login', form)
             .then(res => {
@@ -69,7 +76,9 @@ function login() {
                     errors.email = res.data.message
                 }
             })
-
+            .finally(()=>{
+                loading.toggleLoad()
+            })
     });
 
 }

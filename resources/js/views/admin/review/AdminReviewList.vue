@@ -49,7 +49,7 @@
                                 </div>
                             </td>
                             <td class="px-4 py-4 whitespace-nowrap">
-                                <a :href="review.customer_link" class="text-blue-500 hover:underline text-sm font-medium">
+                                <a target="_blank" :href ="review.customer_link" class="text-blue-500 hover:underline text-sm font-medium">
                                     {{ textCropping(review.customer_name) }}
                                 </a>
                             </td>

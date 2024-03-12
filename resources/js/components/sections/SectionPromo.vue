@@ -1,5 +1,5 @@
 <template>
-    <section class="bg-smoky py-20 relative">
+    <section class="bg-smoky sm:py-20 relative">
         <div class="flex justify-between items-center">
             <div class="container mx-auto">
                 <div class="w-[560px] mx-auto lg:w-[300px]">

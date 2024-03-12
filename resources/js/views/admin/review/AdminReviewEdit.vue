@@ -94,7 +94,7 @@ const errors = ref({})
 
 loadingStore.toggleLoad()
 
-axios.get(`/api/admin/reviews/${props.id}`)
+axios.get(`/api/admin/reviews/${props.id}/edit`)
     .then(res => {
         form.text = res.data.text
         form.category = res.data.category
@@ -113,7 +113,7 @@ axios.get(`/api/admin/reviews/${props.id}`)
 function update() {
     loadingStore.toggleLoad()
 
-    axios.patch(`/api/admin/reviews/${props.id}/edit`, form)
+    axios.patch(`/api/admin/reviews/${props.id}`, form)
         .then(() => {
             router.push({name: 'admin.reviews'})
         })

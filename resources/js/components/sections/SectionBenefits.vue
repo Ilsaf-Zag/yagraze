@@ -9,12 +9,12 @@
                 <div class="flex justify-around flex-wrap mt-12 gap-x-4 max-w-[1250px] mx-auto">
                     <div
                         v-for="item of benifits"
-                        class="bg-smoky shadow-2 mt-7 rounded-3xl relative text-black2 max-w-[325px] max-h-[260px] w-full py-6 px-6 lg:max-w-[280px]">
-                        <h4 class="font-bold text-2xl lg:text-xl">{{item.title}}</h4>
+                        class="bg-smoky shadow-2 mt-7 rounded-3xl relative text-black2 max-w-[360px] max-h-[260px] w-full py-6 px-6 lg:max-w-[300px] sm:px-4">
+                        <h4 class="font-bold text-2xl lg:text-xl max-w-[290px] lg:max-w-[230px]">{{item.title}}</h4>
                         <div class="mt-2 text-xl text-black2 lg:text-lg">
                             {{item.text}}
                         </div>
-                        <IconTriangle class="w-4 absolute top-6 right-6"/>
+                        <IconTriangle class="w-4 absolute top-6 right-6 lg:right-4"/>
                     </div>
                 </div>
             </div>

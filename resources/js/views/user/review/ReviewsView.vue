@@ -1,5 +1,5 @@
 <template>
-        <section class="py-20 relative">
+        <section class="py-20 sm:py-14 relative">
             <div class="container">
                 <Title>Отзывы</Title>
                 <IconCircles class="absolute w-32 top-8 right-8 lg:hidden" />

@@ -4,7 +4,7 @@
             <div class="align-middle inline-block min-w-full ">
                 <div class=" shadow overflow-hidden sm:rounded-lg">
                     <div class="p-4 bg-black2 text-white">
-                        <h2 class="text-2xl font-bold mb-4">Форма добавления иллюстраций</h2>
+                        <h2 class="text-2xl font-bold mb-4">Форма добавления дизайна</h2>
                         <form @submit.prevent="store" class="space-y-4">
                             <div>
                                 <label for="designName" class="block mb-1">Название</label>
@@ -43,7 +43,7 @@
                             <div v-if="errors.image" class="mt-2 text-red-600">{{ errors.image[0] }}</div>
                             <button type="submit"
                                     class="bg-blue-500 text-white px-4 py-2 rounded-md">Добавить
-                                иллюстрацию
+                                дизайн
                             </button>
                         </form>
                     </div>

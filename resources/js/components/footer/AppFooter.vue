@@ -14,16 +14,16 @@
                             </div>
                         </div>
                         <div class="flex space-x-7 ml-6 md:ml-0 md:justify-center">
-                            <a :href="socialMediaLinks.telegram"
+                            <a target="_blank" :href ="socialMediaLinks.telegram"
                                class="rounded-[50px] shadow-13 w-7 h-7 flex items-center justify-center p-[6px]">
                                 <IconTelegram class="bg-black w-6"/>
                             </a>
 
-                            <a :href="socialMediaLinks.vk"
+                            <a target="_blank" :href ="socialMediaLinks.vk"
                                class="rounded-[50px] shadow-13 w-7 h-7 flex items-center justify-center p-[6px]">
                                 <IconVk class="bg-black w-6"/>
                             </a>
-                            <a :href="socialMediaLinks.behance"
+                            <a target="_blank" :href ="socialMediaLinks.behance"
                                class="rounded-[50px] shadow-13 w-7 h-7 flex items-center justify-center p-[6px]">
                                 <IconBehance class="bg-black w-6"/>
                             </a>
@@ -50,7 +50,7 @@
                                         </router-link>
                                     </template>
                                     <template v-else>
-                                        <a :href="item.link"
+                                        <a target="_blank" :href ="item.link"
                                            class="inline-block text-base leading-loose text-light-gray hover:text-primary lg:text-base"
                                         >
                                             {{ item.text }}
