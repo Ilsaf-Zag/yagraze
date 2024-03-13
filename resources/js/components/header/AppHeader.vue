@@ -43,13 +43,15 @@
                     </nav>
                 </template>
                 <template v-else>
-                    <nav v-if="isOpen" class="absolute right-0 top-0 min-h-screen flex items-center w-full bg-black2/75 text-white">
-                        <ul class="w-full flex flex-col items-end text-2xl space-y-5 mt-24 mr-4">
-                            <li @click="isOpen = !isOpen"  v-for="item of routesListMobile">
-                                <router-link :to="{name:item.name}">{{ item.text }}</router-link>
-                            </li>
-                        </ul>
-                    </nav>
+                   <Transition>
+                       <nav v-if="isOpen" class="absolute right-0 top-0 min-h-screen flex items-center w-full bg-black2/75 text-white">
+                           <ul class="w-full flex flex-col items-end text-2xl space-y-5 mt-24 mr-4">
+                               <li @click="isOpen = !isOpen"  v-for="item of routesListMobile">
+                                   <router-link :to="{name:item.name}">{{ item.text }}</router-link>
+                               </li>
+                           </ul>
+                       </nav>
+                   </Transition>
                 </template>
 
                 <div v-if="!largerThanSm" class="z-50" @click="isOpen = !isOpen">
@@ -106,3 +108,24 @@ const routesListMobile = [
 ]
 
 </script>
+
+<style scoped>
+    .v-enter-active,
+    .v-leave-active {
+        transition: width 0.5s ease;
+    }
+
+    .v-enter-from,
+    .v-leave-to {
+        width: 0px;
+    }
+
+    .v-enter-active ul,
+    .v-leave-active ul{
+        transition: font-size 0.2s ease-in;
+    }
+    .v-enter-from ul,
+    .v-leave-to ul {
+        font-size:0px;
+    }
+</style>

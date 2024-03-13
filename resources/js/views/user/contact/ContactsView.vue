@@ -78,7 +78,28 @@ const isFormSent = ref(false)
     background: #F0F0F3 !important;
     box-shadow: -4.03862px -4.03862px 12.1159px #FFFFFF, 6.05794px 6.05794px 12.1159px rgba(174, 174, 192, 0.4);
     color: orange !important;
+    height:50px;
+    font-size:20px;
+
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
 }
 
+.form :deep(button):hover  {
+    background-color:#F5F5F8 !important;
 
+}
+
+.form :deep(button):active  {
+    box-shadow:inset -5.79167px -5.79167px 5.79167px rgba(255, 255, 255, 0.7), inset 5.79167px 5.79167px 5.79167px rgba(174, 174, 192, 0.15);
+
+}
+@media (max-width: 767.98px){
+    .form :deep(button) {
+       height:35px;
+        max-width:200px;
+        font-size:16px;
+    }
+}
 </style>

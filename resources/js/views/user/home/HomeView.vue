@@ -8,28 +8,29 @@
         @showDialog="dialogVisible = !dialogVisible"
     />
     <SectionAuthorInfo
-        data-aos="fade-left"
+        data-aos="fade-down"
         data-aos-easing="ease-in-back"
-        data-aos-delay="600"
+        data-aos-delay="400"
         data-aos-offset="0"
     />
     <SectionBenefits
-        data-aos="fade-left"
+        data-aos="fade-down"
         data-aos-easing="ease-in-back"
         data-aos-delay="1200"
         data-aos-offset="0"
     />
     <SectionReviews
-        div data-aos="fade-left"
+        div data-aos="fade-down"
         data-aos-easing="ease-in-back"
-        data-aos-delay="600"
+        data-aos-delay="400"
         data-aos-offset="0"
     />
     <SectionOrder
         div data-aos="fade-zoom-in"
         data-aos-easing="ease-in-back"
-        data-aos-delay="600"
+        data-aos-delay="400"
         data-aos-offset="0"
+
         @showDialog="dialogVisible = !dialogVisible"
     />
 

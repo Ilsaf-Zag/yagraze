@@ -16,16 +16,16 @@
                         <div class="flex space-x-7 ml-6 md:ml-0 md:justify-center">
                             <a target="_blank" :href ="socialMediaLinks.telegram"
                                class="rounded-[50px] shadow-13 w-7 h-7 flex items-center justify-center p-[6px]">
-                                <IconTelegram class="bg-black w-6"/>
+                                <IconTelegram class="bg-black w-6 pointer-events-none"/>
                             </a>
 
                             <a target="_blank" :href ="socialMediaLinks.vk"
                                class="rounded-[50px] shadow-13 w-7 h-7 flex items-center justify-center p-[6px]">
-                                <IconVk class="bg-black w-6"/>
+                                <IconVk class="bg-black w-6 pointer-events-none"/>
                             </a>
                             <a target="_blank" :href ="socialMediaLinks.behance"
                                class="rounded-[50px] shadow-13 w-7 h-7 flex items-center justify-center p-[6px]">
-                                <IconBehance class="bg-black w-6"/>
+                                <IconBehance class="bg-black w-6 pointer-events-none"/>
                             </a>
                         </div>
                         <span class="text-white text-sm block mt-6 lg:text-xs sm:text-center sm:mt-4">© {{

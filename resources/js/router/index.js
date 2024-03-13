@@ -27,7 +27,7 @@ const router = createRouter({
                     name: 'designs',
                     component: () => import('@views/user/design/DesignView.vue'),
                     meta: {
-                        title: "Дизайны"
+                        title: "Дизайн"
                     }
                 },
                 {
@@ -35,7 +35,7 @@ const router = createRouter({
                     name: 'illustrations',
                     component: () => import('@views/user/illustration/IllustrationsView.vue'),
                     meta: {
-                        title: "Иллюстрации"
+                        title: "Иллюстрация"
                     }
                 },
                 {
@@ -90,7 +90,7 @@ const router = createRouter({
                             name: 'admin.illustrations',
                             component: () => import('@views/admin/illustration/AdminIllustrationList.vue'),
                             meta: {
-                                title: "Админ-панель | Карточки иллюстраций"
+                                title: "Админ-панель | Иллюстрации"
                             },
                         },
                         {
@@ -98,7 +98,7 @@ const router = createRouter({
                             name: 'admin.illustrations.create',
                             component: () => import('@views/admin/illustration/AdminIllustrationCreate.vue'),
                             meta: {
-                                title: "Админ-панель | Создание карточки иллюстрации"
+                                title: "Админ-панель | Создание иллюстраций"
                             },
                         },
                         {
@@ -107,7 +107,7 @@ const router = createRouter({
                             component: () => import('@views/admin/illustration/AdminIllustrationEdit.vue'),
                             props: true,
                             meta: {
-                                title: "Админ-панель | Редактирование карточки иллюстрации"
+                                title: "Админ-панель | Редактирование иллюстраций"
                             },
                         },
                         {
@@ -115,7 +115,7 @@ const router = createRouter({
                             name: 'admin.illustrations.sort',
                             component: () => import('@views/admin/illustration/AdminIllustrationSort.vue'),
                             meta: {
-                                title: "Админ-панель | Сортировка карточек иллюстраций"
+                                title: "Админ-панель | Сортировка иллюстраций"
                             },
                         },
                     ]
@@ -128,7 +128,7 @@ const router = createRouter({
                             name: 'admin.designs',
                             component: () => import('@views/admin/design/AdminDesignList.vue'),
                             meta: {
-                                title: "Админ-панель | Карточки дизайнов"
+                                title: "Админ-панель | Дизайны"
                             },
                         },
                         {
@@ -137,7 +137,7 @@ const router = createRouter({
                             component: () => import('@views/admin/design/AdminDesignCreate.vue'),
 
                             meta: {
-                                title: "Админ-панель | Создание карточки дизайна"
+                                title: "Админ-панель | Создание дизайна"
                             },
                         },
                         {
@@ -146,7 +146,7 @@ const router = createRouter({
                             component: () => import('@views/admin/design/AdminDesignEdit.vue'),
                             props: true,
                             meta: {
-                                title: "Админ-панель | Редактирование карточки дизайна"
+                                title: "Админ-панель | Редактирование дизайна"
                             },
                         },
                         {
@@ -154,7 +154,7 @@ const router = createRouter({
                             name: 'admin.designs.sort',
                             component: () => import('@views/admin/design/AdminDesignSort.vue'),
                             meta: {
-                                title: "Админ-панель | Сортировка карточек дизайна"
+                                title: "Админ-панель | Сортировка дизайна"
                             },
                         },
                     ]
@@ -235,6 +235,8 @@ router.beforeResolve( async (to, from) => {
 
     if (to.meta.requiresAdmin && !user.isAdmin) {
         await user.checkAdmin();
+
+        if (!user.isAdmin) return {name:'login'}
     }
 
     document.title = `Graze | ${to.meta.title}`

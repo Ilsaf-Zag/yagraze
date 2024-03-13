@@ -24,7 +24,7 @@
             </div>
             <div v-if="isOpen" class="z-[999] bg-black/25 px-4 fixed z-20 w-full h-full top-0 left-0 overflow-y-auto">
                 <div  ref="target"
-                     class="max-w-[600px] mx-auto mt-32">
+                     class="max-w-[1000px] mx-auto mt-32">
                     <img class="h-full w-full" :src="`/images/design/${designs[activeIndex].url}`" alt="">
                     <div v-if="showHint && isOpen"
                          class="fixed bottom-8 left-2/4 -translate-x-1/2 bg-black2/75 text-white rounded-xl p-4 shadow-14 backdrop-blur w-60">Чтобы

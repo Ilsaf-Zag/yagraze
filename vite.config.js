@@ -2,6 +2,7 @@ import {defineConfig} from 'vite';
 import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue'
 import {fileURLToPath, URL} from 'node:url'
+import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig({
     server: {
@@ -33,6 +34,28 @@ export default defineConfig({
             refresh: true,
         }),
 
+        VitePWA({
+            includeAssets: ['favicon.ico', 'apple-touch-icon.png'],
+            manifest: {
+                name: 'My Awesome App',
+                short_name: 'MyApp',
+                description: 'My Awesome App description',
+                theme_color: '#F0F0F3',
+                start_url: '/',
+                icons: [
+                    {
+                        src: 'pwa-192x192.png',
+                        sizes: '192x192',
+                        type: 'image/png'
+                    },
+                    {
+                        src: 'pwa-512x512.png',
+                        sizes: '512x512',
+                        type: 'image/png'
+                    }
+                ]
+            }
+        })
     ],
     resolve: {
         alias: {

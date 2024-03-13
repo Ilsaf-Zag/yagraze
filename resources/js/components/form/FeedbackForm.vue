@@ -44,7 +44,6 @@
             <div>Спасибо!</div>
             <div>В скором времени свяжусь с вами.</div>
         </div>
-        <ModalLoading class="modalLoading" />
     </div>
 </template>
 
