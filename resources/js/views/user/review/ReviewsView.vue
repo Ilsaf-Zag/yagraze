@@ -11,9 +11,9 @@
                 <div v-if="reviews" class="w-full">
                     <div class="mx-auto sm:max-w-full">
                     <div v-for="item in list">
-                        <h2 class="text-center mt-20 font-semibold text-2xl sm:mt-8">{{item.title}}</h2>
+                        <h2 class="text-center my-20 sm:my-8 font-semibold text-2xl">{{item.title}}</h2>
                         <div
-                            class="relative shadow-4 w-full pt-[48px] pb-[68px] px-[90px] lg:px-10 mt-12 bg-smoky rounded-[50px] sm:rounded-[30px] sm:mt-10  sm:p-6">
+                            class="relative shadow-4 w-full pt-[48px] pb-[68px] px-[90px] lg:px-10 bg-smoky rounded-[50px] sm:rounded-[30px] sm:p-6">
                             <SplideReviews
                                 :reviews="reviews"
                                 :category="item.category"

@@ -5,7 +5,7 @@
                 <IconCircles class="absolute w-32 top-8 right-8 lg:hidden" />
 
                 <div class="mt-12 space-y-40 flex flex-col mx-auto items-center justify-center sm:px-2">
-                    <div v-html="services.text"></div>
+                    <div class="text-[4pt]" v-html="services.text"></div>
                 </div>
             </div>
         </section>

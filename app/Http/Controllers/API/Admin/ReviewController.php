@@ -20,7 +20,7 @@ class ReviewController extends Controller
             'page' => 'integer'
         ]);
 
-        $reviews = Review::paginate(10);
+        $reviews = Review::orderByDesc('id')->paginate(10);
 
         return $reviews;
     }

@@ -14,7 +14,7 @@ class ReviewController extends Controller
      */
     public function all()
     {
-        $reviews = Review::all();
+        $reviews = Review::query()->orderByDesc('id')->get();
 
         return ReviewResource::collection($reviews)->resolve();
 

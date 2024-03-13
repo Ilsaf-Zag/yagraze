@@ -78,7 +78,7 @@
                         <TailwindPagination
                             :data="reviews"
                             @pagination-change-page="getReviews"
-                            class="pagination bg-black2 text-white"
+                            class="pagination flex bg-black2 text-white"
                         />
                     </div>
                 </div>
@@ -134,6 +134,10 @@ function deleteIllustration(id) {
 
 
 <style>
+
+.pagination span{
+       display:none;
+}
 
 .pagination button {
     background-color: #1E2222

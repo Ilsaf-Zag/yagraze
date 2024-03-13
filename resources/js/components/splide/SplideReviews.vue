@@ -5,13 +5,10 @@
         :has-track="false"
         :options="{
             perPage:1,
-            height:500,
+            height:450,
             breakpoints: {
-                1024:{
-                    height:400
-                },
                 640: {
-                    height:300
+                    height:280
                 },
             },
             pagination:false,
@@ -32,8 +29,8 @@
                     <div class="max-h-[300px] sm:max-h-[200px]  sm:text-xl overflow-y-auto">
                         {{ review.text }}
                     </div>
-                    <a target="_blank" :href ="review.customer_link"
-                       class=" flex absolute bottom-[100px] lg:bottom-20 sm:text-lg font-bold text-right sm:bottom-4 right-0 z-10">{{
+                    <a target="_blank" :href="review.customer_link"
+                       class="sm:text-lg font-bold text-right mt-10 sm:mt-4 block z-10">{{
                             review.customer_name
                         }}</a>
                 </SplideSlide>
@@ -99,7 +96,7 @@ import IconArrowRight from "@components/icons/arrows/IconArrowRight.vue";
 import IconArrowLeft from "@components/icons/arrows/IconArrowLeft.vue";
 import {ref} from "vue";
 
-const props = defineProps(['category','reviews'])
+const props = defineProps(['category', 'reviews'])
 
 const splide = ref()
 const splideArrows = ref()
@@ -107,8 +104,7 @@ const activeIndex = ref(0)
 
 function moved(splide, newIndex) {
     event.preventDefault()
-    console.log(splideArrows.value.length)
-splideArrows.value.go(newIndex)
+    splideArrows.value.go(newIndex)
     activeIndex.value = splide.index
 }
 
@@ -155,12 +151,13 @@ function getCountCategory(category) {
 }
 
 
-.splide__arrow--disabled{
+.splide__arrow--disabled {
     box-shadow: -3.32483px -3.32483px 3.32483px rgba(255, 255, 255, 0.7), inset 3.32483px 3.32483px 6.64966px rgba(174, 174, 192, 0.2);
     background: #E7E7E7;
 }
+
 .splide__arrows--left:active,
-.splide__arrows--right:active{
+.splide__arrows--right:active {
     box-shadow: -3.32483px -3.32483px 3.32483px rgba(255, 255, 255, 0.7), inset 3.32483px 3.32483px 6.64966px rgba(174, 174, 192, 0.2);
     background: #E7E7E7;
 }

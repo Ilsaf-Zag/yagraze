@@ -102,7 +102,7 @@
                         <TailwindPagination
                             :data="designs"
                             @pagination-change-page="getDesigns"
-                            class="pagination bg-black2 text-white"
+                            class="pagination flex bg-black2 text-white"
                         />
                     </div>
                 </div>
@@ -159,6 +159,9 @@ function deleteDesign(id) {
 </script>
 
 <style>
+.pagination span{
+    display:none;
+}
 
 .pagination button {
     background-color: #1E2222
