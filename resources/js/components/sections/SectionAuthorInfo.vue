@@ -25,7 +25,7 @@
                     </div>
                 </div>
                 <router-link :to="{name:'services'}"
-                             class="flex items-center justify-center bg-smoky font-bold text-1xl text-orange rounded-[30px] lg:rounded-[16px] w-[400px] h-[80px] shadow-1 h-16 text-3xl absolute bottom-12 right-12 2xl:w-[300px] 2xl:h-16 2xl:text-2xl xl:w-[250px] xl:h-14 xl:text-xl xl:bottom-8 xl:right-8 lg:bottom-6 lg:right-14 lg:w-[200px] lg:h-11 lg:text-lg sm:right-1/2 sm:translate-x-1/2">
+                             class="flex items-center transition hover:bg-smoky-light active:shadow-14 justify-center bg-smoky font-bold text-1xl text-orange rounded-[30px] lg:rounded-[16px] w-[400px] h-[80px] shadow-1 h-16 text-3xl absolute bottom-12 right-12 2xl:w-[300px] 2xl:h-16 2xl:text-2xl xl:w-[250px] xl:h-14 xl:text-xl xl:bottom-8 xl:right-8 lg:bottom-6 lg:right-14 lg:w-[200px] lg:h-11 lg:text-lg sm:right-1/2 sm:translate-x-1/2">
                     Узнать об услугах
                 </router-link>
                 <IconCircles class="sm:hidden absolute right-4 top-4 w-40"/>

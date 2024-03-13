@@ -9,7 +9,7 @@
                 <Loading v-model="isLoading" class="flex justify-center mt-16" />
             </div>
             <div ref="wrapper" :class="[!loadingStore.isLoading ?'visible':'invisible']"
-                 class="designs grid grid-cols-4 grid-rows-[repeat(auto-fill, minmax(0px, 1fr))] gap-8 mt-16 lg:mt-12 lg:grid-cols-3 sm:grid-cols-2 sm:mt-10">
+                 class="designs grid grid-cols-[repeat(3,minmax(0px,400px))] justify-center lg:grid-cols-[repeat(2,minmax(0px,400px))] gap-8 mt-16 lg:mt-12 sm:mt-10">
 
                 <DesignItem
                     v-for="(design,index) in designs"
@@ -17,7 +17,7 @@
                     :design="design"
                 />
             </div>
-            <div v-if="isOpen" class="bg-black/25 px-4 fixed z-20 w-full h-full top-0 left-0 overflow-y-auto">
+            <div v-if="isOpen" class="z-[999] bg-black/25 px-4 fixed z-20 w-full h-full top-0 left-0 overflow-y-auto">
                 <div  ref="target"
                      class="max-w-[600px] mx-auto mt-32">
                     <img class="h-full w-full" :src="`/images/design/${designs[activeIndex].url}`" alt="">
@@ -26,7 +26,6 @@
                         выйти из просмотра, нажмите на любое пустое место вне изображения.
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
@@ -101,6 +100,6 @@ function showModal(id) {
 
 <style scoped>
 .designs{
-    grid-template-rows: repeat(auto-fill, minmax(0px, 1fr));
+
 }
 </style>

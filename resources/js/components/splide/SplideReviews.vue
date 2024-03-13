@@ -49,7 +49,7 @@
         >
             <IconArrowLeft class="pointer-events-none w-4 sm:w-3.5"/>
         </button>
-        <div class="p-2">
+        <div class="p-2 self-end sm:p-0 sm:pb-1">
             <Splide
                 :has-track="false"
                 ref="splideArrows"
@@ -144,8 +144,8 @@ function getCountCategory(category) {
 .splide__slide--custom.is-active::after {
     content: '';
     display: block;
-    width: 9px;
-    height: 9px;
+    width: 7px;
+    height: 7px;
     border-radius: 50%;
     background-color: orange;
 }

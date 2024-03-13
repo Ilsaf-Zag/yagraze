@@ -26,7 +26,7 @@
                         leave-from="opacity-100 scale-100"
                         leave-to="opacity-0 scale-95"
                     >
-                        <DialogPanel class="w-full mx-auto">
+                        <DialogPanel class="mx-auto">
                             <slot />
                         </DialogPanel>
                     </TransitionChild>

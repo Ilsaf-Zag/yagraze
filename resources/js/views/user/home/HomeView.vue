@@ -25,7 +25,6 @@ import SectionAuthorInfo from "@components/sections/SectionAuthorInfo.vue";
 import SectionReviews from "@components/sections/SectionReviews.vue";
 import Modal from "@components/modal/Modal.vue";
 import FeedbackForm from "@components/form/FeedbackForm.vue";
-
 const dialogVisible = ref(false)
 const isFormSent = ref(false);
 

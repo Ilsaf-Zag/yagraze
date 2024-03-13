@@ -1,0 +1,11 @@
+*{
+    cursor: url("@images/icons/cursors/pointer.svg"), auto;
+}
+
+a,button{
+    cursor:url("@images/icons/cursors/link.png"), auto !important;
+}
+
+input,textarea{
+    cursor:text;
+}

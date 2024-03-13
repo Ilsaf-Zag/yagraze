@@ -14,8 +14,9 @@
                 />
             </div>
         </div>
-        <Modal class="z-[999]"  v-model="isOpen">
-            <Splide :options="{
+        <Modal class="z-[999]" v-if="isOpen" v-model="isOpen">
+            <div class="w-screen">
+                <Splide :options="{
                     start:activeIndex,
                     perPage:1,
                     pagination:false,
@@ -24,12 +25,13 @@
                     keyboard:'global'
                     }">
 
-                <SplideSlide class="flex items-center justify-center" v-for="illustration in illustrations"
-                             @click.stop="isOpen = false">
-                    <img class="illustrations__image mx-auto sm:max-w-[calc(100vw - 20px)]" @click.stop
-                         :src="'/images/illustration/' + illustration.url" :alt="illustration.name">
-                </SplideSlide>
-            </Splide>
+                    <SplideSlide class="flex items-center justify-center" v-for="illustration in illustrations"
+                                 @click.stop="isOpen = false">
+                        <img class="illustrations__image mx-auto sm:max-w-[calc(100vw - 20px)]" @click.stop
+                             :src="'/images/illustration/' + illustration.url" :alt="illustration.name">
+                    </SplideSlide>
+                </Splide>
+            </div>
         </Modal>
     </section>
 

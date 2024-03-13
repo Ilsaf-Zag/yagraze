@@ -14,6 +14,7 @@ export default {
                 'black': '#161A1A',
                 'orange': '#F39600',
                 'smoky': '#F0F0F3',
+                'smoky-light': '#F5F5F8',
                 'light-gray': '#8C8C8C',
                 'black2': '#1E2222',
                 'gray2':'#c8c8c8'
@@ -31,7 +32,8 @@ export default {
                 10:'inset -5px -5px 10px rgba(255, 255, 255, 0.7), inset 5px 5px 25px rgba(174, 174, 192, 0.2)',
                 11:'-5.20833px -5.20833px 15.625px #FFFFFF, 7.8125px 7.8125px 10.4167px rgba(174, 174, 192, 0.4)',
                 12:'-3.33333px -3.33333px 10px #FFFFFF, 5px 5px 10px rgba(174, 174, 192, 0.4)',
-                13: '-2px -2px 6px #262929, 3px 3px 6px #0B0D0D'
+                13: '-2px -2px 6px #262929, 3px 3px 6px #0B0D0D',
+                14:'inset -5.79167px -5.79167px 5.79167px rgba(255, 255, 255, 0.7), inset 5.79167px 5.79167px 5.79167px rgba(174, 174, 192, 0.15)'
             },
             padding: {
                 '70px': '70px',

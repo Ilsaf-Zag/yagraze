@@ -9,7 +9,7 @@
             toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
             tinycomments_mode: 'embedded',
             tinycomments_author: 'Author name',
-            font_size_formats: '1.5rem',
+            font_size_formats: '1.1rem 1.2rem 1.3rem 1.4rem 1.5rem 1.6rem 1.7rem',
             ai_request: (request, respondWith) => respondWith.string(() => Promise.reject('See docs to implement AI Assistant')),
         }"
     />
