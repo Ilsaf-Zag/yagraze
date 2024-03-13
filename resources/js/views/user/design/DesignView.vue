@@ -1,5 +1,10 @@
 <template>
-    <section class="py-20 sm:py-14 relative"
+    <section data-aos="fade-zoom-in"
+             data-aos-easing="ease-in-back"
+             data-aos-delay="300"
+             data-aos-offset="0"
+
+             class="py-20 sm:py-14 relative"
     >
         <div class="container">
             <Title>Дизайн</Title>

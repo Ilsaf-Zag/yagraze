@@ -1,5 +1,12 @@
 <template>
-    <section class="py-20 sm:py-14 relative">
+    <section
+        data-aos="fade-zoom-in"
+        data-aos-easing="ease-in-back"
+        data-aos-delay="300"
+        data-aos-offset="0"
+
+        class="py-20 sm:py-14 relative"
+    >
         <div class="container">
             <Title>Контакты</Title>
             <IconCircles class="absolute w-32 top-8 right-8 lg:hidden"/>
@@ -7,7 +14,9 @@
                 <h2 class="text-center font-semibold text-3xl xl:text-2xl sm:text-xl">Вы можете связаться со мной через
                     форму ниже:</h2>
 
-                <FeedbackForm class="form border-none mt-9 mx-auto rounded-[40px] bg-smoky shadow-2 w-full max-w-[800px] flex items-center justify-center p-10 sm:p-6  sm:rounded-[40px]" v-if="!isFormSent">
+                <FeedbackForm
+                    class="form border-none mt-9 mx-auto rounded-[40px] bg-smoky shadow-2 w-full max-w-[800px] flex items-center justify-center p-10 sm:p-6  sm:rounded-[40px]"
+                    v-if="!isFormSent">
                     Сделать заказ
                 </FeedbackForm>
                 <div v-else class="font-semibold text-3xl text-center text-orange sm:text-lg">
@@ -19,15 +28,15 @@
                         сети:</h3>
                     <div class="mt-7 flex space-x-16 justify-center sm:space-x-8">
 
-                        <a target="_blank" :href ="socialMediaLinks.telegram"
+                        <a target="_blank" :href="socialMediaLinks.telegram"
                            class="shadow-11 rounded-3xl bg-smoky w-30 h-30 transition hover:bg-smoky-light active:shadow-14 2xl:w-24 2xl:h-24 xl:w-20 xl:h-20  p-8 xl:p-6 flex items-center justify-center">
                             <IconTelegram class="pointer-events-none"/>
                         </a>
-                        <a target="_blank" :href ="socialMediaLinks.vk"
+                        <a target="_blank" :href="socialMediaLinks.vk"
                            class="shadow-11 rounded-3xl bg-smoky w-30 h-30 transition hover:bg-smoky-light active:shadow-14 2xl:w-24 2xl:h-24 xl:w-20 xl:h-20  p-8 xl:p-6 flex items-center justify-center">
                             <IconVk class="pointer-events-none"/>
                         </a>
-                        <a target="_blank" :href ="socialMediaLinks.whatsApp"
+                        <a target="_blank" :href="socialMediaLinks.whatsApp"
                            class="shadow-11 rounded-3xl bg-smoky w-30 h-30 transition hover:bg-smoky-light active:shadow-14 2xl:w-24 2xl:h-24 xl:w-20 xl:h-20  p-8 xl:p-6 flex items-center justify-center">
                             <IconWhatsUp class="pointer-events-none"/>
                         </a>
@@ -65,10 +74,10 @@ const isFormSent = ref(false)
     box-shadow: inset -5px -5px 10px rgba(255, 255, 255, 0.7), inset 5px 5px 25px rgba(174, 174, 192, 0.2);
 }
 
-.form :deep(button){
+.form :deep(button) {
     background: #F0F0F3 !important;
     box-shadow: -4.03862px -4.03862px 12.1159px #FFFFFF, 6.05794px 6.05794px 12.1159px rgba(174, 174, 192, 0.4);
-    color:orange !important;
+    color: orange !important;
 }
 
 

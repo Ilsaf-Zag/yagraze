@@ -1,5 +1,12 @@
 <template>
-        <section class="py-20 sm:py-14 relative min-h-screen">
+        <section
+            data-aos="fade-zoom-in"
+            data-aos-easing="ease-in-back"
+            data-aos-delay="300"
+            data-aos-offset="0"
+
+            class="py-20 sm:py-14 relative min-h-screen"
+        >
             <div class="container">
                 <Title>Отзывы</Title>
                 <IconCircles class="absolute w-32 top-8 right-8 lg:hidden" />

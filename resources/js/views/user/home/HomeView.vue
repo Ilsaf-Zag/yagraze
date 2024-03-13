@@ -1,9 +1,37 @@
 <template>
-    <SectionPromo @showDialog="dialogVisible = !dialogVisible"/>
-    <SectionAuthorInfo />
-    <SectionBenefits/>
-    <SectionReviews/>
-    <SectionOrder @showDialog="dialogVisible = !dialogVisible"/>
+    <SectionPromo
+        data-aos="fade-zoom-in"
+        data-aos-easing="ease-in-back"
+        data-aos-delay="300"
+        data-aos-offset="0"
+
+        @showDialog="dialogVisible = !dialogVisible"
+    />
+    <SectionAuthorInfo
+        data-aos="fade-left"
+        data-aos-easing="ease-in-back"
+        data-aos-delay="600"
+        data-aos-offset="0"
+    />
+    <SectionBenefits
+        data-aos="fade-left"
+        data-aos-easing="ease-in-back"
+        data-aos-delay="1200"
+        data-aos-offset="0"
+    />
+    <SectionReviews
+        div data-aos="fade-left"
+        data-aos-easing="ease-in-back"
+        data-aos-delay="600"
+        data-aos-offset="0"
+    />
+    <SectionOrder
+        div data-aos="fade-zoom-in"
+        data-aos-easing="ease-in-back"
+        data-aos-delay="600"
+        data-aos-offset="0"
+        @showDialog="dialogVisible = !dialogVisible"
+    />
 
     <Modal v-model="dialogVisible">
         <FeedbackForm
@@ -25,6 +53,7 @@ import SectionAuthorInfo from "@components/sections/SectionAuthorInfo.vue";
 import SectionReviews from "@components/sections/SectionReviews.vue";
 import Modal from "@components/modal/Modal.vue";
 import FeedbackForm from "@components/form/FeedbackForm.vue";
+
 const dialogVisible = ref(false)
 const isFormSent = ref(false);
 

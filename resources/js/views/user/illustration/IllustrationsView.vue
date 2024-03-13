@@ -1,12 +1,20 @@
 <template>
-    <section class="py-20 sm:py-14 relative min-h-screen">
+    <section
+        data-aos="fade-zoom-in"
+        data-aos-easing="ease-in-back"
+        data-aos-delay="300"
+        data-aos-offset="0"
+
+        class="py-20 sm:py-14 relative min-h-screen"
+    >
         <Title>Иллюстрации</Title>
-        <IconCircles class="absolute w-32 top-8 right-8 lg:hidden" />
+        <IconCircles class="absolute w-32 top-8 right-8 lg:hidden"/>
 
         <div v-if="isLoading" class="flex justify-center mt-16">
-            <Loading v-model="isLoading" class="flex justify-center mt-16" />
+            <Loading v-model="isLoading" class="flex justify-center mt-16"/>
         </div>
-        <div :class="[!loadingStore.isLoading ?'visible':'invisible']" class="illustrations__wrapper mx-auto mt-16 sm:mt-8">
+        <div :class="[!loadingStore.isLoading ?'visible':'invisible']"
+             class="illustrations__wrapper mx-auto mt-16 sm:mt-8">
             <div v-for="(illustration,index) in illustrations">
                 <IllustrationItem
                     @click="showSlider(index)"
@@ -55,7 +63,7 @@ import IconCircles from "@components/icons/IconCircles.vue";
 const isOpen = ref(false)
 const activeIndex = ref(0)
 const illustrations = ref();
-const loadingStore =  useLoadingStore()
+const loadingStore = useLoadingStore()
 const isLoading = ref(false)
 
 function showSlider(id) {
@@ -63,11 +71,11 @@ function showSlider(id) {
     activeIndex.value = id
 }
 
-onMounted(()=>{
+onMounted(() => {
     getIllustrations()
 })
 
-function getIllustrations(){
+function getIllustrations() {
     isLoading.value = true
 
     axios.get('/api/illustrations')
@@ -90,8 +98,8 @@ function getIllustrations(){
 </script>
 <style>
 .illustrations__image {
-    max-height:calc(100vh - 40px);
-    max-width:calc(100vw - 20px);
+    max-height: calc(100vh - 40px);
+    max-width: calc(100vw - 20px);
 
 }
 </style>
