@@ -1,8 +1,12 @@
 <template>
-        <section class="py-20 sm:py-14 relative">
+        <section class="py-20 sm:py-14 relative min-h-screen">
             <div class="container">
                 <Title>Отзывы</Title>
                 <IconCircles class="absolute w-32 top-8 right-8 lg:hidden" />
+
+                <div v-if="isLoading" class="flex justify-center mt-16">
+                    <Loading v-model="isLoading" class="flex justify-center mt-16" />
+                </div>
 
                 <div v-if="reviews" class="w-full">
                     <div class="mx-auto sm:max-w-full">
@@ -30,9 +34,11 @@ import '@splidejs/vue-splide/css';
 import SplideReviews from "@components/splide/SplideReviews.vue";
 import IconCircles from "@components/icons/IconCircles.vue";
 import axios from "axios";
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
+import Loading from "@components/loading/Loading.vue";
 
 const reviews = ref()
+const isLoading = ref(false)
 
 const list =[
     {
@@ -45,10 +51,20 @@ const list =[
     }
 ]
 
-axios.get('/api/reviews/all')
-    .then(res => {
-        reviews.value = res.data
-    })
+onMounted(()=>{
+    getReviews()
+})
+function getReviews(){
+    isLoading.value = true
+
+    axios.get('/api/reviews/all')
+        .then(res => {
+            reviews.value = res.data
+        })
+        .finally(()=>{
+            isLoading.value = false
+        })
+}
 </script>
 <style>
 

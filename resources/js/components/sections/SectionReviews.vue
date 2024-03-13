@@ -116,6 +116,12 @@ function getRandomComments(quantity = 5) {
     background: #E7E7E7;
 }
 
+.splide__arrow--prev--custom:active,
+.splide__arrow--next--custom:active{
+    box-shadow: -3.32483px -3.32483px 3.32483px rgba(255, 255, 255, 0.7), inset 3.32483px 3.32483px 6.64966px rgba(174, 174, 192, 0.2);
+    background: #E7E7E7;
+}
+
 .splide__arrow--prev--custom svg {
     transform: scaleX(1);
 }

@@ -44,13 +44,13 @@
 
 
     <div
-        class="splide__arrows  w-40 p-1.5 sm:p-1 flex items-center justify-between rounded-2xl shadow-12">
+        class="splide__arrows  w-40 p-1.5 sm:px-1.5 sm:pb-[2.5px] sm:pt-1 flex items-center justify-between rounded-2xl shadow-12 sm:w-32">
 
         <button @click="splide.go('-1')"
-                class="flex justify-center items-center rounded-xl w-10 h-14"
+                class="splide__arrows--left flex justify-center items-center rounded-xl w-10 h-14 sm:w-8 sm:h-12 sm:rounded-lg"
                 :class="[activeIndex === 0?'splide__arrow--disabled':'']"
         >
-            <IconArrowLeft class="pointer-events-none w-4"/>
+            <IconArrowLeft class="pointer-events-none w-4 sm:w-3.5"/>
         </button>
         <div class="p-2">
             <Splide
@@ -82,11 +82,11 @@
             </Splide>
         </div>
         <button @click="splide.go('+1')"
-                class="flex justify-center items-center rounded-xl w-10 h-14"
+                class="splide__arrows--left flex justify-center items-center rounded-xl w-10 h-14 sm:w-8 sm:h-12 sm:rounded-lg"
 
                 :class="[splideArrows?.length - 1 === activeIndex?'splide__arrow--disabled':'']"
         >
-            <IconArrowRight class="pointer-events-none w-4"/>
+            <IconArrowRight class="pointer-events-none w-4 sm:w-3.5"/>
 
         </button>
     </div>
@@ -98,9 +98,6 @@ import {Splide, SplideSlide, SplideTrack} from "@splidejs/vue-splide";
 import IconArrowRight from "@components/icons/arrows/IconArrowRight.vue";
 import IconArrowLeft from "@components/icons/arrows/IconArrowLeft.vue";
 import {ref} from "vue";
-import axios from "axios";
-import IconDevider from "@components/icons/IconDevider.vue";
-import DefaultButton from "@components/UI/Buttons/DefaultButton.vue";
 
 const props = defineProps(['category','reviews'])
 
@@ -159,6 +156,11 @@ function getCountCategory(category) {
 
 
 .splide__arrow--disabled{
+    box-shadow: -3.32483px -3.32483px 3.32483px rgba(255, 255, 255, 0.7), inset 3.32483px 3.32483px 6.64966px rgba(174, 174, 192, 0.2);
+    background: #E7E7E7;
+}
+.splide__arrows--left:active,
+.splide__arrows--right:active{
     box-shadow: -3.32483px -3.32483px 3.32483px rgba(255, 255, 255, 0.7), inset 3.32483px 3.32483px 6.64966px rgba(174, 174, 192, 0.2);
     background: #E7E7E7;
 }

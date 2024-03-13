@@ -1,5 +1,5 @@
 <template>
-    <div class="min-h-[85%] flex items-center justify-center bg-gray-100">
+    <div class="min-h-screen flex items-center justify-center bg-gray-100">
         <div class="bg-white p-8 rounded shadow-md">
             <h1 class="text-2xl font-semibold mb-6">Login Page</h1>
 
@@ -67,7 +67,7 @@ const loading = useLoadingStore()
 function login() {
     loading.toggleLoad()
 
-    axios.get('/sanctum/csrf-cookie').then(response => {
+    axios.get('/sanctum/csrf-cookie').then(() => {
         axios.post('/api/login', form)
             .then(res => {
                 if (res.data.success) {
