@@ -29,15 +29,15 @@
                     <div class="mt-7 flex space-x-16 justify-center sm:space-x-8">
 
                         <a target="_blank" :href="socialMediaLinks.telegram"
-                           class="shadow-11 rounded-3xl bg-smoky w-30 h-30 transition hover:bg-smoky-light active:shadow-14 2xl:w-24 2xl:h-24 xl:w-20 xl:h-20  p-8 xl:p-6 flex items-center justify-center">
+                           class="shadow-11 rounded-3xl bg-smoky  transition hover:bg-smoky-light active:shadow-14 w-24 2xl:h-24 xl:w-20 xl:h-20  p-8 xl:p-6 flex items-center justify-center">
                             <IconTelegram class="pointer-events-none"/>
                         </a>
                         <a target="_blank" :href="socialMediaLinks.vk"
-                           class="shadow-11 rounded-3xl bg-smoky w-30 h-30 transition hover:bg-smoky-light active:shadow-14 2xl:w-24 2xl:h-24 xl:w-20 xl:h-20  p-8 xl:p-6 flex items-center justify-center">
+                           class="shadow-11 rounded-3xl bg-smoky  transition hover:bg-smoky-light active:shadow-14 w-24 2xl:h-24 xl:w-20 xl:h-20  p-8 xl:p-6 flex items-center justify-center">
                             <IconVk class="pointer-events-none"/>
                         </a>
                         <a target="_blank" :href="socialMediaLinks.whatsApp"
-                           class="shadow-11 rounded-3xl bg-smoky w-30 h-30 transition hover:bg-smoky-light active:shadow-14 2xl:w-24 2xl:h-24 xl:w-20 xl:h-20  p-8 xl:p-6 flex items-center justify-center">
+                           class="shadow-11 rounded-3xl bg-smoky  transition hover:bg-smoky-light active:shadow-14 w-24 2xl:h-24 xl:w-20 xl:h-20  p-8 xl:p-6 flex items-center justify-center">
                             <IconWhatsUp class="pointer-events-none"/>
                         </a>
 

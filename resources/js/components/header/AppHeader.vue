@@ -46,7 +46,7 @@
                        <nav class="absolute right-0 top-0 min-h-screen flex items-center bg-black2/75 text-white transition-all duration-700"
                             :class="[isOpen ?'visible w-full':'invisible w-0']"
                        >
-                           <ul class="w-full flex flex-col items-end text-2xl space-y-5 mt-24 mr-4 transition-all duration-300"
+                           <ul class="w-full flex flex-col items-end text-2xl space-y-5 mt-24 mr-4 transition-all duration-300 delay-100"
                                :class="[isOpen ?'visible opacity-100':'invisible opacity-0']"
                            >
                                <li @click="isOpen = false"  v-for="item of routesListMobile">

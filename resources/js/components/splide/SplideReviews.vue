@@ -41,7 +41,7 @@
 
 
     <div
-        class="splide__arrows  w-40 p-1.5 sm:px-1.5 sm:pb-[2.5px] sm:pt-1 flex items-center justify-between rounded-2xl shadow-12 sm:w-32">
+        class="splide__arrows  w-40 p-1.5 flex items-center justify-between rounded-2xl shadow-12 sm:rounded-lg sm:w-32">
 
         <button @click="splide.go('-1')"
                 class="splide__arrows--left flex justify-center items-center rounded-xl w-10 h-14 sm:w-8 sm:h-12 sm:rounded-lg"
