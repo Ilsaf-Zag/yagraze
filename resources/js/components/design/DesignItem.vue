@@ -21,13 +21,11 @@ defineProps(['design'])
     height: 100%;
     top: 0;
     left: 0;
-    opacity: 0;
-    overflow: hidden;
     transition: 0.5s all;
 }
 
 .design-item:hover .design-blackout {
-    opacity: 1;
-    overflow: visible;
+    background-color: rgba(0, 0, 0, 0.5);
+
 }
 </style>

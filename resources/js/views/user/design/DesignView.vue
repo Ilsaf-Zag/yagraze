@@ -92,11 +92,15 @@ function getDesigns() {
 function showModal(id) {
     activeIndex.value = id
     isOpen.value = true
-    showHint.value = true
 
-    timerId.value = setTimeout(() => {
-        showHint.value = false
-    }, 3000)
+    setTimeout(()=>{
+        showHint.value = true
+
+        timerId.value = setTimeout(() => {
+            showHint.value = false
+        }, 3000)
+
+    },1000)
 }
 
 </script>

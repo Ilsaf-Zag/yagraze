@@ -44,14 +44,14 @@
                                     <template v-if="menu.title === 'Меню' ">
                                         <router-link
                                             :to="{name:item.routeName}"
-                                            class="inline-block text-base leading-loose text-light-gray hover:text-primary lg:text-base"
+                                            class="inline-block hover:text-gray3 transition-colors text-base leading-loose text-light-gray hover:text-primary lg:text-base"
                                         >
                                             {{ item.text }}
                                         </router-link>
                                     </template>
                                     <template v-else>
                                         <a target="_blank" :href ="item.link"
-                                           class="inline-block text-base leading-loose text-light-gray hover:text-primary lg:text-base"
+                                           class="inline-block hover:text-gray3 transition-colors text-base leading-loose text-light-gray hover:text-primary lg:text-base"
                                         >
                                             {{ item.text }}
                                         </a>
@@ -106,3 +106,4 @@ const menus = ref([
 ])
 
 </script>
+

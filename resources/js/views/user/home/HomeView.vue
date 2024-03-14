@@ -3,33 +3,28 @@
         data-aos="fade-zoom-in"
         data-aos-easing="ease-in-back"
         data-aos-delay="300"
-        data-aos-offset="0"
 
         @showDialog="dialogVisible = !dialogVisible"
     />
     <SectionAuthorInfo
         data-aos="fade-up"
         data-aos-easing="ease-in-back"
-        data-aos-delay="400"
-        data-aos-offset="0"
+        data-aos-delay="300"
     />
     <SectionBenefits
         data-aos="fade-up"
         data-aos-easing="ease-in-back"
-        data-aos-delay="1200"
-        data-aos-offset="0"
+        data-aos-delay="800"
     />
     <SectionReviews
-        div data-aos="fade-up"
+        data-aos="fade-up"
         data-aos-easing="ease-in-back"
-        data-aos-delay="400"
-        data-aos-offset="0"
+        data-aos-delay="800"
     />
     <SectionOrder
-        div data-aos="fade-zoom-in"
+        data-aos="fade-zoom-in"
         data-aos-easing="ease-in-back"
         data-aos-delay="400"
-        data-aos-offset="0"
 
         @showDialog="dialogVisible = !dialogVisible"
     />
@@ -57,7 +52,6 @@ import FeedbackForm from "@components/form/FeedbackForm.vue";
 
 const dialogVisible = ref(false)
 const isFormSent = ref(false);
-
 
 </script>
 

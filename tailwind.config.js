@@ -15,9 +15,11 @@ export default {
                 'orange': '#F39600',
                 'smoky': '#F0F0F3',
                 'smoky-light': '#F5F5F8',
-                'light-gray': '#8C8C8C',
                 'black2': '#1E2222',
-                'gray2':'#c8c8c8'
+                'light-gray': '#8C8C8C',
+                'gray2':'#c8c8c8',
+                'gray3':'#B6B6B6',
+                'gray4':'#CACACA'
             },
             boxShadow: {
                 1: '-6px -6px 18px #FFFFFF, 9px 9px 18px rgba(174, 174, 192, 0.4)',
