@@ -16,10 +16,10 @@
                                 <ul
                                     class="z-10 text-center overflow-hidden -translate-y-1/4 group-hover:translate-y-0 transition-transform invisible group-hover:visible -left-2/4 w-52 bg-black absolute px-7 py-5  rounded-b-2xl space-y-4 lg:w-40 lg:-left-[35%] lg:px-5">
                                     <li class="border-t border-white/15 border-solid pt-4">
-                                        <router-link :to="{name:'designs'}" class="py-1">Дизайн</router-link>
+                                        <router-link :to="{name:'designs'}" class="py-1 hover:text-gray3 transition-colors duration-200">Дизайн</router-link>
                                     </li>
                                     <li>
-                                        <router-link :to="{name:'illustrations'}" class="py-1">Иллюстрации
+                                        <router-link :to="{name:'illustrations'}" class="py-1 hover:text-gray3 transition-colors duration-200">Иллюстрации
                                         </router-link>
                                     </li>
                                 </ul>
@@ -29,15 +29,15 @@
                                 Информация
                                 <ul class="z-10 text-center overflow-hidden invisible -translate-y-1/4 group-hover:translate-y-0 transition-transform group-hover:visible group-hover:overflow-visible right-2/4 translate-x-2/4 w-52 bg-black absolute px-7 py-5 rounded-b-2xl  space-y-4 lg:w-40 lg: lg:px-5">
                                     <li class="border-t border-white/15 border-solid pt-4">
-                                        <router-link :to="{name:'services'}" class="py-1">Мои услуги</router-link>
+                                        <router-link :to="{name:'services'}" class="py-1 hover:text-gray3 transition-colors duration-200">Мои услуги</router-link>
                                     </li>
                                     <li class="">
-                                        <router-link :to="{name:'reviews'}" class="py-1">Отзывы</router-link>
+                                        <router-link :to="{name:'reviews'}" class="py-1 hover:text-gray3 transition-colors duration-200">Отзывы</router-link>
                                     </li>
                                 </ul>
                             </li>
                             <li>
-                                <router-link :to="{name:'contacts'}">Контакты</router-link>
+                                <router-link :to="{name:'contacts'}" class="hover:text-gray3 transition-colors duration-200">Контакты</router-link>
                             </li>
                         </ul>
                     </nav>

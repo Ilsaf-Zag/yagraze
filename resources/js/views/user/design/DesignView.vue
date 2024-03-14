@@ -27,15 +27,19 @@
                 v-model="isOpen"
                 class="z-[999]"
             >
-                <div>
+                <div ref="target">
                     <div class="absolute z-20 top-40 left-2/4 bg-fixed max-w-[1000px] w-full -translate-x-2/4">
                         <img class="h-full w-full" :src="`/images/design/${designs[activeIndex].url}`" alt="">
                     </div>
                     <div v-if="showHint && isOpen"
-                         class="fixed z-[1000] bottom-2 left-2/4 -translate-x-1/2 bg-black2/75 text-white rounded-xl p-4
-                            shadow-7 backdrop-blur w-60">
-                        Чтобы
-                        выйти из просмотра, нажмите на любое пустое место вне изображения.
+                         class="relative z-[1000] h-screen">
+                        <div
+                           class="fixed bottom-0 bg-black2/75 text-white rounded-xl p-4
+                            shadow-7 backdrop-blur w-60 left-2/4 -translate-x-1/2 bottom-4"
+                        >
+                            Чтобы
+                            выйти из просмотра, нажмите на любое пустое место вне изображения.
+                        </div>
                     </div>
                 </div>
             </Modal>
@@ -64,6 +68,7 @@ const showHint = ref(false)
 const loadingStore = useLoadingStore()
 const timerId = ref()
 const isLoading = ref(false)
+const target = ref()
 
 
 onMounted(() => {
@@ -92,16 +97,19 @@ function getDesigns() {
 function showModal(id) {
     activeIndex.value = id
     isOpen.value = true
+    showHint.value = true
 
-    setTimeout(()=>{
-        showHint.value = true
+    timerId.value = setTimeout(() => {
 
-        timerId.value = setTimeout(() => {
-            showHint.value = false
-        }, 3000)
+        showHint.value = false
+    }, 3000)
 
-    },1000)
 }
+
+onClickOutside(target, () => {
+    console.log(timerId.value)
+    clearTimeout(timerId.value)
+})
 
 </script>
 
