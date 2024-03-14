@@ -8,19 +8,19 @@
         @showDialog="dialogVisible = !dialogVisible"
     />
     <SectionAuthorInfo
-        data-aos="fade-down"
+        data-aos="fade-up"
         data-aos-easing="ease-in-back"
         data-aos-delay="400"
         data-aos-offset="0"
     />
     <SectionBenefits
-        data-aos="fade-down"
+        data-aos="fade-up"
         data-aos-easing="ease-in-back"
         data-aos-delay="1200"
         data-aos-offset="0"
     />
     <SectionReviews
-        div data-aos="fade-down"
+        div data-aos="fade-up"
         data-aos-easing="ease-in-back"
         data-aos-delay="400"
         data-aos-offset="0"

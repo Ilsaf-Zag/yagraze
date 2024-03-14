@@ -10,7 +10,6 @@ export const useUserStore = defineStore('user',()=> {
     const checkAdmin = async()=>{
         const res = await axios.get('/api/check-admin')
         if (res.data) isAdmin.value = true
-        console.log(res)
     }
 
     return {isAdmin,checkAdmin}
