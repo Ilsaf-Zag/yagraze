@@ -107,7 +107,6 @@ function showModal(id) {
 }
 
 onClickOutside(target, () => {
-    console.log(timerId.value)
     clearTimeout(timerId.value)
 })
 

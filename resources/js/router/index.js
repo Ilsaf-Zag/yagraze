@@ -19,7 +19,7 @@ const router = createRouter({
                     component: () => import('@views/user/home/HomeView.vue'),
                     name: 'home',
                     meta: {
-                        title: "Главная страница"
+                        title: "Главная"
                     }
                 },
                 {
