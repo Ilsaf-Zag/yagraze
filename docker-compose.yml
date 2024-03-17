@@ -49,10 +49,10 @@ services:
     command: ['--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci','--default-authentication-plugin=mysql_native_password']
     environment:
       # Желаемые настройки для СУБД MySQL
-      MYSQL_DATABASE: yagraze
-      MYSQL_ROOT_PASSWORD: 'Jawvb*123axQdl#Ae139'
-      MYSQL_USER: 'Vladimir'
-      MYSQL_PASSWORD: 'gr!zeE1&qwe'
+      MYSQL_DATABASE: 
+      MYSQL_ROOT_PASSWORD: ''
+      MYSQL_USER: ''
+      MYSQL_PASSWORD: ''
     volumes:
       - dbdata:/var/lib/mysql # Используем именованный том из блока volumes
       - ./docker/mysql/my.cnf:/etc/mysql/my.cnf # Передаем в контейнер конфигурационный файл
