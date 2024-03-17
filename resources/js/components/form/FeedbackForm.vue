@@ -29,7 +29,7 @@
                 </div>
                 <div class="mt-8 sm:mt-4">
                         <textarea v-model="form.text"
-                                  class="w-full h-32 rounded-[25px] p-5 resize-none" placeholder="Сообщение"
+                                  class="w-full h-32 rounded-[25px] p-5 xl:text-lg xl:px-3 resize-none" placeholder="Сообщение"
                                   :class="{'border  border-red-600':errors.text}"
                         >
                         </textarea>

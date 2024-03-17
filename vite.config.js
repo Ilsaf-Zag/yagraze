@@ -4,12 +4,10 @@ import vue from '@vitejs/plugin-vue'
 import {fileURLToPath, URL} from 'node:url'
 import { VitePWA } from 'vite-plugin-pwa';
 
+
 export default defineConfig({
-    server: {
-        hmr: {
-            host: '77.222.53.167'
-        },
-    },
+ outDir:'/build/',
+
     plugins: [
         vue({
             template: {

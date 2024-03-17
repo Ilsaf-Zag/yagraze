@@ -4,7 +4,7 @@ import {useLoadingStore} from "@stores/loadingStore.js";
 
 
 const router = createRouter({
-    history: createWebHistory(import.meta.env.BASE_URL) || createWebHistory('/'),
+    history: createWebHistory('/'),
     scrollBehavior(to, from, savedPosition) {
         return { top: 0 }
     },

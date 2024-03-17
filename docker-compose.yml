@@ -26,12 +26,19 @@ services:
     tty: true
     ports:
       - "80:80" # Внутренний порт контейнера пробрасываем на host машину
+      - "443:443"
     volumes:
       - .:/var/www # Монтируем локальную папку в контейнер как /var/www
       - ./docker/nginx/conf.d/:/etc/nginx/conf.d/ # Передаем в контейнер конфигурационные файлы nginx
+      - /etc/letsencrypt/:/etc/letsencrypt/
     depends_on:
       - backend
 
+  certbot:
+    container_name: service_certbot
+    image: certbot/certbot
+    volumes:
+      - /etc/letsencrypt/:/etc/letsencrypt/
   # MySQL контейнер
   db:
     image: mysql:5.7.22
@@ -42,17 +49,16 @@ services:
     command: ['--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci','--default-authentication-plugin=mysql_native_password']
     environment:
       # Желаемые настройки для СУБД MySQL
-      MYSQL_DATABASE: laravel
-      MYSQL_ROOT_PASSWORD: 'Graze116'
-      MYSQL_USER: 'Vlad'
-      MYSQL_PASSWORD: 'graze116'
+      MYSQL_DATABASE: yagraze
+      MYSQL_ROOT_PASSWORD: 'Jawvb*123axQdl#Ae139'
+      MYSQL_USER: 'Vladimir'
+      MYSQL_PASSWORD: 'gr!zeE1&qwe'
     volumes:
       - dbdata:/var/lib/mysql # Используем именованный том из блока volumes
       - ./docker/mysql/my.cnf:/etc/mysql/my.cnf # Передаем в контейнер конфигурационный файл
     healthcheck:
       test: [ "CMD", "mysqladmin", "ping" ]
 
-  # Для сборки js
   node:
     build:
       context: .
@@ -64,7 +70,6 @@ services:
     volumes:
       - .:/var/www # Монтируем локальную папку в контейнер как /var/www
 
-# Тома
 volumes:
   # Чтобы данные БД не пропадали после выключения создаем именованный том
   dbdata:
