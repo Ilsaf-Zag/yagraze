@@ -11,9 +11,8 @@ services:
       - "host.docker.internal:host-gateway"
     restart: unless-stopped
     tty: true
-    working_dir: /var/www
     volumes:
-      - .:/var/www # Монтируем локальную папку в контейнер как /var/www
+      - .:/var/www
       - ./docker/backend/php.ini:/usr/local/etc/php/php.ini
     depends_on:
       - db
@@ -26,13 +25,22 @@ services:
     tty: true
     ports:
       - "80:80" # Внутренний порт контейнера пробрасываем на host машину
+      - 443:443
     volumes:
-      - .:/var/www # Монтируем локальную папку в контейнер как /var/www
-      - ./docker/nginx/conf.d/:/etc/nginx/conf.d/ # Передаем в контейнер конфигурационные файлы nginx
+      - .:/var/www
+      - ./docker/nginx/conf.d/:/etc/nginx/conf.d # Передаем в контейнер конфигурационные файлы nginx
+      - ./certbot:/var/www/certbot
     depends_on:
       - backend
+      - certbot
+  certbot:
+    container_name: service_certbot
+    image: certbot/certbot
+    volumes:
+      - ./certbot/www/:/var/www/certbot
+      - ./certbot/conf/:/etc/letsencrypt
 
-  # MySQL контейнер
+#MySQL контейнер
   db:
     image: mysql:5.7.22
     restart: unless-stopped
@@ -62,7 +70,7 @@ services:
       - "5173:5173"
     working_dir: /var/www
     volumes:
-      - .:/var/www # Монтируем локальную папку в контейнер как /var/www
+      - .:/var/www
 
 # Тома
 volumes:
