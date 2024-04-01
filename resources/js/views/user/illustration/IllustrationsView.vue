@@ -13,7 +13,7 @@
         <div v-if="isLoading" class="flex justify-center mt-16">
             <Loading v-model="isLoading" class="flex justify-center mt-16"/>
         </div>
-        <div :class="[!loadingStore.isLoading ?'visible':'invisible']"
+        <div :class="[!isLoading ?'visible':'invisible']"
              class="illustrations__wrapper mx-auto mt-16 sm:mt-8">
             <div v-for="(illustration,index) in illustrations">
                 <IllustrationItem
@@ -57,13 +57,11 @@ import IllustrationItem from "@components/illustration/IllustrationItem.vue";
 import Modal from "@components/modal/Modal.vue";
 import {Splide, SplideSlide} from '@splidejs/vue-splide';
 import '@splidejs/vue-splide/css';
-import {useLoadingStore} from "@stores/loadingStore.js";
 import IconCircles from "@components/icons/IconCircles.vue";
 
 const isOpen = ref(false)
 const activeIndex = ref(0)
 const illustrations = ref();
-const loadingStore = useLoadingStore()
 const isLoading = ref(false)
 
 function showSlider(id) {
