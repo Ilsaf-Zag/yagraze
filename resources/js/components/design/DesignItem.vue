@@ -4,7 +4,7 @@
         <div class="absolute z-10 bottom-10 left-1/2 -translate-x-1/2 w-[80%] text-3xl 2xl:text-2xl font-bold text-white sm:bottom-4 sm:text-base">
             {{design.description}}
         </div>
-        <div class="design-blackout rounded-[40px] sm:rounded-[30px]"></div>
+        <div class="design-blackout rounded-[40px] md:rounded-[20px]"></div>
     </div>
 </template>
 

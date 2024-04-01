@@ -35,7 +35,7 @@ const router = createRouter({
                     name: 'illustrations',
                     component: () => import('@views/user/illustration/IllustrationsView.vue'),
                     meta: {
-                        title: "Иллюстрация"
+                        title: "Иллюстрации"
                     }
                 },
                 {

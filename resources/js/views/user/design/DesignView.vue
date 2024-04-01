@@ -13,7 +13,7 @@
             <div v-if="isLoading" class="flex justify-center mt-16">
                 <Loading v-model="isLoading" class="flex justify-center mt-16"/>
             </div>
-            <div ref="wrapper" :class="[!loadingStore.isLoading ?'visible':'invisible']"
+            <div ref="wrapper" :class="[!isLoading ?'visible':'invisible']"
                  class="designs grid grid-cols-[repeat(3,minmax(0px,400px))] justify-center lg:grid-cols-[repeat(2,minmax(0px,400px))] gap-8 mt-16 lg:mt-12 sm:mt-10">
 
                 <DesignItem
@@ -55,7 +55,6 @@ import axios from "axios";
 import DesignItem from "@components/design/DesignItem.vue";
 import imagesLoaded from "imagesloaded";
 import Loading from "@components/loading/Loading.vue";
-import {useLoadingStore} from "@stores/loadingStore.js";
 import {onClickOutside} from "@vueuse/core";
 import IconCircles from "@components/icons/IconCircles.vue";
 import Modal from "@components/modal/Modal.vue";
@@ -65,7 +64,6 @@ const designs = ref()
 const activeIndex = ref(0)
 const wrapper = ref()
 const showHint = ref(false)
-const loadingStore = useLoadingStore()
 const timerId = ref()
 const isLoading = ref(false)
 const target = ref()
